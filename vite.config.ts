@@ -5,7 +5,7 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  // Use environment variable for base path if available, otherwise use the default
+  // Ensure base path is correctly set
   base: process.env.VITE_BASE_PATH || '/japan-visa-calculator/',
   server: {
     host: "::",

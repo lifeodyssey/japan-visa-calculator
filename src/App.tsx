@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,13 +10,16 @@ import { LanguageProvider } from "./contexts/LanguageContext";
 
 const queryClient = new QueryClient();
 
+// Get the base path from environment or use default
+const basePath = import.meta.env.BASE_URL || '/japan-visa-calculator/';
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <LanguageProvider>
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        <BrowserRouter basename={basePath}>
           <Routes>
             <Route path="/" element={<Index />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
