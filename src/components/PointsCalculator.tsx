@@ -75,7 +75,7 @@ const PointsCalculator = () => {
         <p className="text-gray-600 mb-4">{description}</p>
         <div className="space-y-3">
           {items.map((item) => (
-            <div key={item.id} className="flex items-center space-x-2 justify-between border bg-white p-3 rounded-md hover:bg-gray-50">
+            <div key={item.id} className="flex items-center space-x-2 justify-between bg-white/90 p-3 rounded-md hover:bg-white transition-colors duration-200">
               <div className="flex items-center space-x-2">
                 <Checkbox 
                   id={item.id} 
@@ -115,13 +115,13 @@ const PointsCalculator = () => {
           />
         </div>
 
-        <div className="grid gap-6">
+        <div className="space-y-6">
           {renderPointsSection(
             "1. 学历背景",
             "请选择您的最高学历",
             academicPoints,
             "academic",
-            "bg-blue-50"
+            "bg-[#E5DEFF]"
           )}
 
           {renderPointsSection(
@@ -129,7 +129,7 @@ const PointsCalculator = () => {
             "请选择您相关领域的工作年限",
             careerPoints,
             "career",
-            "bg-green-50"
+            "bg-[#F2FCE2]"
           )}
 
           {renderPointsSection(
@@ -137,7 +137,7 @@ const PointsCalculator = () => {
             "请选择您的年收入范围（日元）",
             salaryPoints,
             "salary",
-            "bg-yellow-50"
+            "bg-[#FEF7CD]"
           )}
 
           {renderPointsSection(
@@ -145,7 +145,7 @@ const PointsCalculator = () => {
             "请选择您的年龄段",
             agePoints,
             "age",
-            "bg-purple-50"
+            "bg-[#D3E4FD]"
           )}
 
           {renderPointsSection(
@@ -153,13 +153,13 @@ const PointsCalculator = () => {
             "请选择您的日语水平",
             japanesePoints,
             "japanese",
-            "bg-pink-50"
+            "bg-[#FFDEE2]"
           )}
 
           <div className="mt-8">
             <h2 className="text-xl font-bold mb-4">额外加分项目</h2>
             
-            <div className="bg-orange-50 p-6 rounded-lg mb-6">
+            <div className="bg-[#FDE1D3] p-6 rounded-lg mb-6">
               <BonusPointsSection
                 title="学历相关加分"
                 items={bonusAcademicPoints}
@@ -169,7 +169,7 @@ const PointsCalculator = () => {
               />
             </div>
 
-            <div className="bg-teal-50 p-6 rounded-lg mb-6">
+            <div className="bg-[#D6BCFA] p-6 rounded-lg mb-6">
               <BonusPointsSection
                 title="职业相关加分"
                 items={bonusCareerPoints}
@@ -179,7 +179,7 @@ const PointsCalculator = () => {
               />
             </div>
 
-            <div className="bg-indigo-50 p-6 rounded-lg mb-6">
+            <div className="bg-[#F1F0FB] p-6 rounded-lg mb-6">
               <BonusPointsSection
                 title="语言能力加分"
                 items={bonusLanguagePoints}
@@ -189,7 +189,7 @@ const PointsCalculator = () => {
               />
             </div>
 
-            <div className="bg-rose-50 p-6 rounded-lg mb-6">
+            <div className="bg-[#FEC6A1] p-6 rounded-lg mb-6">
               <BonusPointsSection
                 title="收入相关加分"
                 items={bonusSalaryPoints}
@@ -199,7 +199,7 @@ const PointsCalculator = () => {
               />
             </div>
 
-            <div className="bg-amber-50 p-6 rounded-lg mb-6">
+            <div className="bg-[#E5DEFF] p-6 rounded-lg mb-6">
               <BonusPointsSection
                 title="特殊加分项目"
                 items={bonusSpecialPoints}
@@ -209,33 +209,33 @@ const PointsCalculator = () => {
               />
             </div>
           </div>
-
-          <div className={`p-6 rounded-lg mt-8 ${
-            qualificationStatus.qualified 
-              ? qualificationStatus.level === "fastTrack" 
-                ? "bg-green-100 text-green-800"
-                : "bg-blue-100 text-blue-800"
-              : "bg-red-100 text-red-800"
-          }`}>
-            <h3 className="text-xl font-bold mb-2">评估结果</h3>
-            <p className="text-lg mb-4">{qualificationStatus.message}</p>
-            
-            {qualificationStatus.qualified && (
-              <div className="space-y-4">
-                <h4 className="font-bold">高度专门人才签证优势:</h4>
-                <ul className="list-disc pl-5 space-y-2">
-                  <li>5年后可申请永久居留（普通工作签证通常需要10年）</li>
-                  <li>配偶可在日本工作（无需工作许可）</li>
-                  <li>可携带父母来日本（在特定条件下）</li>
-                  <li>可聘请家政人员（在特定条件下）</li>
-                  <li>行政手续简化</li>
-                </ul>
-              </div>
-            )}
-          </div>
         </div>
 
-        <p className="text-sm text-gray-500 mt-4 text-center">
+        <div className={`mt-12 p-6 rounded-lg ${
+          qualificationStatus.qualified 
+            ? qualificationStatus.level === "fastTrack" 
+              ? "bg-green-100 text-green-800"
+              : "bg-blue-100 text-blue-800"
+            : "bg-red-100 text-red-800"
+        }`}>
+          <h3 className="text-xl font-bold mb-2">评估结果</h3>
+          <p className="text-lg mb-4">{qualificationStatus.message}</p>
+          
+          {qualificationStatus.qualified && (
+            <div className="space-y-4">
+              <h4 className="font-bold">高度专门人才签证优势:</h4>
+              <ul className="list-disc pl-5 space-y-2">
+                <li>5年后可申请永久居留（普通工作签证通常需要10年）</li>
+                <li>配偶可在日本工作（无需工作许可）</li>
+                <li>可携带父母来日本（在特定条件下）</li>
+                <li>可聘请家政人员（在特定条件下）</li>
+                <li>行政手续简化</li>
+              </ul>
+            </div>
+          )}
+        </div>
+
+        <p className="text-sm text-gray-500 mt-8 text-center">
           注：本计算器仅供参考，最终认定以日本出入国在留管理厅为准。
         </p>
       </CardContent>
