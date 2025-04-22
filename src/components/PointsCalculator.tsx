@@ -66,15 +66,16 @@ const PointsCalculator = () => {
     title: string,
     description: string,
     items: { id: string; label: string; points: number }[],
-    category: string
+    category: string,
+    bgColor: string
   ) => {
     return (
-      <div className="mb-8">
+      <div className={`mb-8 p-6 rounded-lg ${bgColor}`}>
         <h3 className="text-lg font-bold mb-2">{title}</h3>
         <p className="text-gray-600 mb-4">{description}</p>
         <div className="space-y-3">
           {items.map((item) => (
-            <div key={item.id} className="flex items-center space-x-2 justify-between border p-3 rounded-md hover:bg-gray-50">
+            <div key={item.id} className="flex items-center space-x-2 justify-between border bg-white p-3 rounded-md hover:bg-gray-50">
               <div className="flex items-center space-x-2">
                 <Checkbox 
                   id={item.id} 
@@ -119,36 +120,95 @@ const PointsCalculator = () => {
             "1. 学历背景",
             "请选择您的最高学历",
             academicPoints,
-            "academic"
+            "academic",
+            "bg-blue-50"
           )}
 
           {renderPointsSection(
             "2. 专业工作经验",
             "请选择您相关领域的工作年限",
             careerPoints,
-            "career"
+            "career",
+            "bg-green-50"
           )}
 
           {renderPointsSection(
             "3. 年收入水平",
             "请选择您的年收入范围（日元）",
             salaryPoints,
-            "salary"
+            "salary",
+            "bg-yellow-50"
           )}
 
           {renderPointsSection(
             "4. 年龄",
             "请选择您的年龄段",
             agePoints,
-            "age"
+            "age",
+            "bg-purple-50"
           )}
 
           {renderPointsSection(
             "5. 日语能力",
             "请选择您的日语水平",
             japanesePoints,
-            "japanese"
+            "japanese",
+            "bg-pink-50"
           )}
+
+          <div className="mt-8">
+            <h2 className="text-xl font-bold mb-4">额外加分项目</h2>
+            
+            <div className="bg-orange-50 p-6 rounded-lg mb-6">
+              <BonusPointsSection
+                title="学历相关加分"
+                items={bonusAcademicPoints}
+                selections={selections}
+                onSelectionChange={handleCheckboxChange}
+                category="bonusAcademic"
+              />
+            </div>
+
+            <div className="bg-teal-50 p-6 rounded-lg mb-6">
+              <BonusPointsSection
+                title="职业相关加分"
+                items={bonusCareerPoints}
+                selections={selections}
+                onSelectionChange={handleCheckboxChange}
+                category="bonusCareer"
+              />
+            </div>
+
+            <div className="bg-indigo-50 p-6 rounded-lg mb-6">
+              <BonusPointsSection
+                title="语言能力加分"
+                items={bonusLanguagePoints}
+                selections={selections}
+                onSelectionChange={handleCheckboxChange}
+                category="bonusLanguage"
+              />
+            </div>
+
+            <div className="bg-rose-50 p-6 rounded-lg mb-6">
+              <BonusPointsSection
+                title="收入相关加分"
+                items={bonusSalaryPoints}
+                selections={selections}
+                onSelectionChange={handleCheckboxChange}
+                category="bonusSalary"
+              />
+            </div>
+
+            <div className="bg-amber-50 p-6 rounded-lg mb-6">
+              <BonusPointsSection
+                title="特殊加分项目"
+                items={bonusSpecialPoints}
+                selections={selections}
+                onSelectionChange={handleCheckboxChange}
+                category="bonusSpecial"
+              />
+            </div>
+          </div>
 
           <div className={`p-6 rounded-lg mt-8 ${
             qualificationStatus.qualified 
@@ -173,55 +233,11 @@ const PointsCalculator = () => {
               </div>
             )}
           </div>
-
-          <p className="text-sm text-gray-500 mt-4 text-center">
-            注：本计算器仅供参考，最终认定以日本出入国在留管理厅为准。
-          </p>
         </div>
 
-        <div className="mt-8 border-t pt-6">
-          <h2 className="text-xl font-bold mb-4">额外加分项目</h2>
-          
-          <BonusPointsSection
-            title="学历相关加分"
-            items={bonusAcademicPoints}
-            selections={selections}
-            onSelectionChange={handleCheckboxChange}
-            category="bonusAcademic"
-          />
-
-          <BonusPointsSection
-            title="职业相关加分"
-            items={bonusCareerPoints}
-            selections={selections}
-            onSelectionChange={handleCheckboxChange}
-            category="bonusCareer"
-          />
-
-          <BonusPointsSection
-            title="语言能力加分"
-            items={bonusLanguagePoints}
-            selections={selections}
-            onSelectionChange={handleCheckboxChange}
-            category="bonusLanguage"
-          />
-
-          <BonusPointsSection
-            title="收入相关加分"
-            items={bonusSalaryPoints}
-            selections={selections}
-            onSelectionChange={handleCheckboxChange}
-            category="bonusSalary"
-          />
-
-          <BonusPointsSection
-            title="特殊加分项目"
-            items={bonusSpecialPoints}
-            selections={selections}
-            onSelectionChange={handleCheckboxChange}
-            category="bonusSpecial"
-          />
-        </div>
+        <p className="text-sm text-gray-500 mt-4 text-center">
+          注：本计算器仅供参考，最终认定以日本出入国在留管理厅为准。
+        </p>
       </CardContent>
     </Card>
   );
