@@ -1,6 +1,9 @@
+
 import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 import { 
   academicPoints, 
   careerPoints, 
@@ -36,13 +39,13 @@ const PointsCalculator = () => {
   }, [selections]);
 
   const handleCheckboxChange = (
-    category: string,
-    itemId: string,
-    checked: boolean
+    itemId: string, 
+    checked: boolean,
+    category?: string
   ) => {
     const newSelections = { ...selections };
     
-    if (["academic", "career", "salary", "age", "japanese"].includes(category)) {
+    if (category && ["academic", "career", "salary", "age", "japanese"].includes(category)) {
       const categoryItems = 
         category === "academic" ? academicPoints :
         category === "career" ? careerPoints :
@@ -77,7 +80,7 @@ const PointsCalculator = () => {
                   id={item.id} 
                   checked={selections[item.id] || false}
                   onCheckedChange={(checked) => 
-                    handleCheckboxChange(category, item.id, checked as boolean)
+                    handleCheckboxChange(item.id, checked as boolean, category)
                   }
                 />
                 <Label htmlFor={item.id} className="cursor-pointer">{item.label}</Label>
@@ -184,6 +187,7 @@ const PointsCalculator = () => {
             items={bonusAcademicPoints}
             selections={selections}
             onSelectionChange={handleCheckboxChange}
+            category="bonusAcademic"
           />
 
           <BonusPointsSection
@@ -191,6 +195,7 @@ const PointsCalculator = () => {
             items={bonusCareerPoints}
             selections={selections}
             onSelectionChange={handleCheckboxChange}
+            category="bonusCareer"
           />
 
           <BonusPointsSection
@@ -198,6 +203,7 @@ const PointsCalculator = () => {
             items={bonusLanguagePoints}
             selections={selections}
             onSelectionChange={handleCheckboxChange}
+            category="bonusLanguage"
           />
 
           <BonusPointsSection
@@ -205,6 +211,7 @@ const PointsCalculator = () => {
             items={bonusSalaryPoints}
             selections={selections}
             onSelectionChange={handleCheckboxChange}
+            category="bonusSalary"
           />
 
           <BonusPointsSection
@@ -212,6 +219,7 @@ const PointsCalculator = () => {
             items={bonusSpecialPoints}
             selections={selections}
             onSelectionChange={handleCheckboxChange}
+            category="bonusSpecial"
           />
         </div>
       </CardContent>

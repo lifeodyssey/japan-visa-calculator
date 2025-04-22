@@ -18,7 +18,8 @@ interface BonusPointsSectionProps {
     description: string;
   }[];
   selections: Record<string, boolean>;
-  onSelectionChange: (itemId: string, checked: boolean) => void;
+  onSelectionChange: (itemId: string, checked: boolean, category?: string) => void;
+  category?: string;
 }
 
 const BonusPointsSection: React.FC<BonusPointsSectionProps> = ({
@@ -26,6 +27,7 @@ const BonusPointsSection: React.FC<BonusPointsSectionProps> = ({
   items,
   selections,
   onSelectionChange,
+  category = "bonus",
 }) => {
   return (
     <div className="mb-6">
@@ -38,7 +40,7 @@ const BonusPointsSection: React.FC<BonusPointsSectionProps> = ({
                 id={item.id}
                 checked={selections[item.id] || false}
                 onCheckedChange={(checked) =>
-                  onSelectionChange(item.id, checked as boolean)
+                  onSelectionChange(item.id, checked as boolean, category)
                 }
               />
               <div className="flex items-center gap-2">
