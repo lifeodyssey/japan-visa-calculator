@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -22,8 +21,10 @@ import {
   bonusSpecialPoints,
 } from "@/data/bonusPoints";
 import BonusPointsSection from "./BonusPointsSection";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const PointsCalculator = () => {
+  const { t } = useLanguage();
   const [selections, setSelections] = useState<Record<string, boolean>>({});
   const [totalPoints, setTotalPoints] = useState(0);
   const [qualificationStatus, setQualificationStatus] = useState({
@@ -97,17 +98,17 @@ const PointsCalculator = () => {
   return (
     <Card className="w-full max-w-4xl mx-auto shadow-lg">
       <CardHeader className="bg-japan-red text-white">
-        <CardTitle className="text-2xl text-center">日本高度专门人才积分计算器</CardTitle>
+        <CardTitle className="text-2xl text-center">{t('title')}</CardTitle>
         <CardDescription className="text-white text-center opacity-90">
-          按照日本出入国在留管理厅标准计算高度专门人才签证积分
+          {t('subtitle')}
         </CardDescription>
       </CardHeader>
       
       <CardContent className="p-6">
         <div className="mb-8">
           <div className="flex justify-between mb-2">
-            <span className="font-semibold">当前总分: {totalPoints}</span>
-            <span className="font-semibold">目标分数: {pointThresholds.highlySkilled}</span>
+            <span className="font-semibold">{t('currentPoints')}: {totalPoints}</span>
+            <span className="font-semibold">{t('targetPoints')}: {pointThresholds.highlySkilled}</span>
           </div>
           <Progress 
             value={(totalPoints / pointThresholds.fastTrack) * 100} 
@@ -117,51 +118,51 @@ const PointsCalculator = () => {
 
         <div className="space-y-6">
           {renderPointsSection(
-            "1. 学历背景",
-            "请选择您的最高学历",
+            t('academic.title'),
+            t('academic.description'),
             academicPoints,
             "academic",
             "bg-[#E5DEFF]"
           )}
 
           {renderPointsSection(
-            "2. 专业工作经验",
-            "请选择您相关领域的工作年限",
+            t('career.title'),
+            t('career.description'),
             careerPoints,
             "career",
             "bg-[#F2FCE2]"
           )}
 
           {renderPointsSection(
-            "3. 年收入水平",
-            "请选择您的年收入范围（日元）",
+            t('salary.title'),
+            t('salary.description'),
             salaryPoints,
             "salary",
             "bg-[#FEF7CD]"
           )}
 
           {renderPointsSection(
-            "4. 年龄",
-            "请选择您的年龄段",
+            t('age.title'),
+            t('age.description'),
             agePoints,
             "age",
             "bg-[#D3E4FD]"
           )}
 
           {renderPointsSection(
-            "5. 日语能力",
-            "请选择您的日语水平",
+            t('japanese.title'),
+            t('japanese.description'),
             japanesePoints,
             "japanese",
             "bg-[#FFDEE2]"
           )}
 
           <div className="mt-8">
-            <h2 className="text-xl font-bold mb-4">额外加分项目</h2>
+            <h2 className="text-xl font-bold mb-4">{t('bonusPoints')}</h2>
             
             <div className="bg-[#FDE1D3] p-6 rounded-lg mb-6">
               <BonusPointsSection
-                title="学历相关加分"
+                title={t('bonusAcademic')}
                 items={bonusAcademicPoints}
                 selections={selections}
                 onSelectionChange={handleCheckboxChange}
@@ -171,7 +172,7 @@ const PointsCalculator = () => {
 
             <div className="bg-[#D6BCFA] p-6 rounded-lg mb-6">
               <BonusPointsSection
-                title="职业相关加分"
+                title={t('bonusCareer')}
                 items={bonusCareerPoints}
                 selections={selections}
                 onSelectionChange={handleCheckboxChange}
@@ -181,7 +182,7 @@ const PointsCalculator = () => {
 
             <div className="bg-[#F1F0FB] p-6 rounded-lg mb-6">
               <BonusPointsSection
-                title="语言能力加分"
+                title={t('bonusLanguage')}
                 items={bonusLanguagePoints}
                 selections={selections}
                 onSelectionChange={handleCheckboxChange}
@@ -191,7 +192,7 @@ const PointsCalculator = () => {
 
             <div className="bg-[#FEC6A1] p-6 rounded-lg mb-6">
               <BonusPointsSection
-                title="收入相关加分"
+                title={t('bonusSalary')}
                 items={bonusSalaryPoints}
                 selections={selections}
                 onSelectionChange={handleCheckboxChange}
@@ -201,7 +202,7 @@ const PointsCalculator = () => {
 
             <div className="bg-[#E5DEFF] p-6 rounded-lg mb-6">
               <BonusPointsSection
-                title="特殊加分项目"
+                title={t('bonusSpecial')}
                 items={bonusSpecialPoints}
                 selections={selections}
                 onSelectionChange={handleCheckboxChange}
@@ -211,6 +212,7 @@ const PointsCalculator = () => {
           </div>
         </div>
 
+        {/* Move evaluation result to bottom */}
         <div className={`mt-12 p-6 rounded-lg ${
           qualificationStatus.qualified 
             ? qualificationStatus.level === "fastTrack" 
@@ -218,25 +220,23 @@ const PointsCalculator = () => {
               : "bg-blue-100 text-blue-800"
             : "bg-red-100 text-red-800"
         }`}>
-          <h3 className="text-xl font-bold mb-2">评估结果</h3>
+          <h3 className="text-xl font-bold mb-2">{t('evaluationTitle')}</h3>
           <p className="text-lg mb-4">{qualificationStatus.message}</p>
           
           {qualificationStatus.qualified && (
             <div className="space-y-4">
-              <h4 className="font-bold">高度专门人才签证优势:</h4>
+              <h4 className="font-bold">{t('benefits.title')}</h4>
               <ul className="list-disc pl-5 space-y-2">
-                <li>5年后可申请永久居留（普通工作签证通常需要10年）</li>
-                <li>配偶可在日本工作（无需工作许可）</li>
-                <li>可携带父母来日本（在特定条件下）</li>
-                <li>可聘请家政人员（在特定条件下）</li>
-                <li>行政手续简化</li>
+                {t('benefits.items').split(',').map((benefit, index) => (
+                  <li key={index}>{benefit}</li>
+                ))}
               </ul>
             </div>
           )}
         </div>
 
         <p className="text-sm text-gray-500 mt-8 text-center">
-          注：本计算器仅供参考，最终认定以日本出入国在留管理厅为准。
+          {t('disclaimer')}
         </p>
       </CardContent>
     </Card>
