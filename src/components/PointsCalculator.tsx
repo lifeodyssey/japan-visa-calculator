@@ -1,10 +1,8 @@
 
 import React, { useState, useEffect } from "react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { 
   academicPoints, 
@@ -19,7 +17,6 @@ import {
 } from "@/data/japanPointsSystem";
 
 const PointsCalculator = () => {
-  const [activeTab, setActiveTab] = useState("academic");
   const [selections, setSelections] = useState<Record<string, boolean>>({});
   const [totalPoints, setTotalPoints] = useState(0);
   const [qualificationStatus, setQualificationStatus] = useState({
@@ -28,27 +25,20 @@ const PointsCalculator = () => {
     message: ""
   });
 
-  // Calculate total points whenever selections change
   useEffect(() => {
     const calculatedPoints = calculateTotalPoints(selections);
     setTotalPoints(calculatedPoints);
     setQualificationStatus(determineQualification(calculatedPoints));
   }, [selections]);
 
-  // Handle checkbox changes
   const handleCheckboxChange = (
     category: string,
     itemId: string,
     checked: boolean
   ) => {
-    // Create a copy of the current selections
     const newSelections = { ...selections };
-
-    // If this is a checkbox that should be exclusive within its category
-    if (
-      ["academic", "career", "salary", "age", "japanese"].includes(category)
-    ) {
-      // Uncheck all items in the same category
+    
+    if (["academic", "career", "salary", "age", "japanese"].includes(category)) {
       const categoryItems = 
         category === "academic" ? academicPoints :
         category === "career" ? careerPoints :
@@ -61,54 +51,39 @@ const PointsCalculator = () => {
       });
     }
 
-    // Set the new value for this checkbox
     newSelections[itemId] = checked;
-    
-    // Update the state
     setSelections(newSelections);
   };
 
   const renderPointsSection = (
+    title: string,
+    description: string,
     items: { id: string; label: string; points: number }[],
     category: string
   ) => {
     return (
-      <div className="space-y-4">
-        {items.map((item) => (
-          <div key={item.id} className="flex items-center space-x-2 justify-between border p-3 rounded-md hover:bg-gray-50">
-            <div className="flex items-center space-x-2">
-              <Checkbox 
-                id={item.id} 
-                checked={selections[item.id] || false}
-                onCheckedChange={(checked) => 
-                  handleCheckboxChange(category, item.id, checked as boolean)
-                }
-              />
-              <Label htmlFor={item.id} className="cursor-pointer">{item.label}</Label>
+      <div className="mb-8">
+        <h3 className="text-lg font-bold mb-2">{title}</h3>
+        <p className="text-gray-600 mb-4">{description}</p>
+        <div className="space-y-3">
+          {items.map((item) => (
+            <div key={item.id} className="flex items-center space-x-2 justify-between border p-3 rounded-md hover:bg-gray-50">
+              <div className="flex items-center space-x-2">
+                <Checkbox 
+                  id={item.id} 
+                  checked={selections[item.id] || false}
+                  onCheckedChange={(checked) => 
+                    handleCheckboxChange(category, item.id, checked as boolean)
+                  }
+                />
+                <Label htmlFor={item.id} className="cursor-pointer">{item.label}</Label>
+              </div>
+              <div className="font-semibold text-japan-red">{item.points} 分</div>
             </div>
-            <div className="font-semibold text-japan-red">{item.points} 分</div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     );
-  };
-
-  const goToNextTab = () => {
-    if (activeTab === "academic") setActiveTab("career");
-    else if (activeTab === "career") setActiveTab("salary");
-    else if (activeTab === "salary") setActiveTab("age");
-    else if (activeTab === "age") setActiveTab("japanese");
-    else if (activeTab === "japanese") setActiveTab("bonus");
-    else if (activeTab === "bonus") setActiveTab("results");
-  };
-
-  const goToPreviousTab = () => {
-    if (activeTab === "career") setActiveTab("academic");
-    else if (activeTab === "salary") setActiveTab("career");
-    else if (activeTab === "age") setActiveTab("salary");
-    else if (activeTab === "japanese") setActiveTab("age");
-    else if (activeTab === "bonus") setActiveTab("japanese");
-    else if (activeTab === "results") setActiveTab("bonus");
   };
 
   return (
@@ -119,8 +94,9 @@ const PointsCalculator = () => {
           按照日本出入国在留管理厅标准计算高度专门人才签证积分
         </CardDescription>
       </CardHeader>
-      <CardContent className="pt-6">
-        <div className="mb-6">
+      
+      <CardContent className="p-6">
+        <div className="mb-8">
           <div className="flex justify-between mb-2">
             <span className="font-semibold">当前总分: {totalPoints}</span>
             <span className="font-semibold">目标分数: {pointThresholds.highlySkilled}</span>
@@ -131,68 +107,61 @@ const PointsCalculator = () => {
           />
         </div>
 
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid grid-cols-7 mb-4">
-            <TabsTrigger value="academic">学历</TabsTrigger>
-            <TabsTrigger value="career">工作经历</TabsTrigger>
-            <TabsTrigger value="salary">年收入</TabsTrigger>
-            <TabsTrigger value="age">年龄</TabsTrigger>
-            <TabsTrigger value="japanese">日语能力</TabsTrigger>
-            <TabsTrigger value="bonus">额外加分</TabsTrigger>
-            <TabsTrigger value="results">结果</TabsTrigger>
-          </TabsList>
+        <div className="grid gap-6">
+          {renderPointsSection(
+            "1. 学历背景",
+            "请选择您的最高学历",
+            academicPoints,
+            "academic"
+          )}
 
-          <TabsContent value="academic" className="pt-4">
-            <h3 className="text-lg font-bold mb-4">学历背景</h3>
-            <p className="mb-4 text-gray-600">请选择您的最高学历</p>
-            {renderPointsSection(academicPoints, "academic")}
-          </TabsContent>
+          {renderPointsSection(
+            "2. 专业工作经验",
+            "请选择您相关领域的工作年限",
+            careerPoints,
+            "career"
+          )}
 
-          <TabsContent value="career" className="pt-4">
-            <h3 className="text-lg font-bold mb-4">专业工作经验</h3>
-            <p className="mb-4 text-gray-600">请选择您相关领域的工作年限</p>
-            {renderPointsSection(careerPoints, "career")}
-          </TabsContent>
+          {renderPointsSection(
+            "3. 年收入水平",
+            "请选择您的年收入范围（日元）",
+            salaryPoints,
+            "salary"
+          )}
 
-          <TabsContent value="salary" className="pt-4">
-            <h3 className="text-lg font-bold mb-4">年收入水平</h3>
-            <p className="mb-4 text-gray-600">请选择您的年收入范围（日元）</p>
-            {renderPointsSection(salaryPoints, "salary")}
-          </TabsContent>
+          {renderPointsSection(
+            "4. 年龄",
+            "请选择您的年龄段",
+            agePoints,
+            "age"
+          )}
 
-          <TabsContent value="age" className="pt-4">
-            <h3 className="text-lg font-bold mb-4">年龄</h3>
-            <p className="mb-4 text-gray-600">请选择您的年龄段</p>
-            {renderPointsSection(agePoints, "age")}
-          </TabsContent>
+          {renderPointsSection(
+            "5. 日语能力",
+            "请选择您的日语水平",
+            japanesePoints,
+            "japanese"
+          )}
 
-          <TabsContent value="japanese" className="pt-4">
-            <h3 className="text-lg font-bold mb-4">日语能力</h3>
-            <p className="mb-4 text-gray-600">请选择您的日语水平</p>
-            {renderPointsSection(japanesePoints, "japanese")}
-          </TabsContent>
+          {renderPointsSection(
+            "6. 额外加分项",
+            "请选择适用的额外加分项（可多选）",
+            bonusPoints,
+            "bonus"
+          )}
 
-          <TabsContent value="bonus" className="pt-4">
-            <h3 className="text-lg font-bold mb-4">额外加分项</h3>
-            <p className="mb-4 text-gray-600">请选择适用的额外加分项（可多选）</p>
-            {renderPointsSection(bonusPoints, "bonus")}
-          </TabsContent>
-
-          <TabsContent value="results" className="pt-4">
-            <div className="text-center space-y-6 py-6">
-              <h3 className="text-2xl font-bold">您的总分: {totalPoints}</h3>
-              
-              <div className={`p-6 rounded-lg ${
-                qualificationStatus.qualified 
-                  ? qualificationStatus.level === "fastTrack" 
-                    ? "bg-green-100 text-green-800"
-                    : "bg-blue-100 text-blue-800"
-                  : "bg-red-100 text-red-800"
-              }`}>
-                <p className="text-lg font-semibold">{qualificationStatus.message}</p>
-              </div>
-              
-              <div className="space-y-4 text-left mt-6">
+          <div className={`p-6 rounded-lg mt-8 ${
+            qualificationStatus.qualified 
+              ? qualificationStatus.level === "fastTrack" 
+                ? "bg-green-100 text-green-800"
+                : "bg-blue-100 text-blue-800"
+              : "bg-red-100 text-red-800"
+          }`}>
+            <h3 className="text-xl font-bold mb-2">评估结果</h3>
+            <p className="text-lg mb-4">{qualificationStatus.message}</p>
+            
+            {qualificationStatus.qualified && (
+              <div className="space-y-4">
                 <h4 className="font-bold">高度专门人才签证优势:</h4>
                 <ul className="list-disc pl-5 space-y-2">
                   <li>5年后可申请永久居留（普通工作签证通常需要10年）</li>
@@ -201,32 +170,15 @@ const PointsCalculator = () => {
                   <li>可聘请家政人员（在特定条件下）</li>
                   <li>行政手续简化</li>
                 </ul>
-                <p className="text-sm text-gray-500 mt-4">
-                  注：本计算器仅供参考，最终认定以日本出入国在留管理厅为准。
-                </p>
               </div>
-            </div>
-          </TabsContent>
-        </Tabs>
+            )}
+          </div>
+
+          <p className="text-sm text-gray-500 mt-4 text-center">
+            注：本计算器仅供参考，最终认定以日本出入国在留管理厅为准。
+          </p>
+        </div>
       </CardContent>
-      
-      <CardFooter className="flex justify-between border-t p-4">
-        <Button 
-          variant="outline" 
-          onClick={goToPreviousTab}
-          disabled={activeTab === "academic"}
-        >
-          上一步
-        </Button>
-        
-        <Button 
-          onClick={goToNextTab}
-          disabled={activeTab === "results"}
-          className="bg-japan-red hover:bg-japan-red/80"
-        >
-          {activeTab === "bonus" ? "查看结果" : "下一步"}
-        </Button>
-      </CardFooter>
     </Card>
   );
 };
