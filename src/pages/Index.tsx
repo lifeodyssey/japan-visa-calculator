@@ -7,11 +7,15 @@ const Index = () => {
   const { t } = useLanguage();
   
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-4">
-      <header className="w-full max-w-4xl mb-8 text-center">
-        <LanguageSwitch />
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">{t('title')}</h1>
-        <p className="text-gray-600">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-japan-white to-gray-50 p-4">
+      <header className="w-full max-w-4xl mb-8 text-center relative">
+        <div className="absolute right-0 top-0">
+          <LanguageSwitch />
+        </div>
+        <h1 className="text-3xl md:text-4xl font-bold mb-4 font-japanese text-japan-black mt-12">
+          {t('title')}
+        </h1>
+        <p className="text-gray-600 max-w-2xl mx-auto">
           {t('subtitle')}
         </p>
       </header>

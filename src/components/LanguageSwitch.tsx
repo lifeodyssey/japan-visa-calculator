@@ -2,29 +2,47 @@
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Language } from "@/data/translations";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Languages } from "lucide-react";
 
 const LanguageSwitch = () => {
   const { language, setLanguage } = useLanguage();
 
-  const languages: { code: Language; label: string }[] = [
-    { code: 'zh', label: '中文' },
-    { code: 'en', label: 'English' },
-    { code: 'ja', label: '日本語' }
+  const languages: { code: Language; label: string; flag: string }[] = [
+    { code: 'zh', label: '中文', flag: '🇨🇳' },
+    { code: 'en', label: 'English', flag: '🇺🇸' },
+    { code: 'ja', label: '日本語', flag: '🇯🇵' }
   ];
 
+  const currentLanguage = languages.find(l => l.code === language);
+
   return (
-    <div className="flex gap-2 justify-center mb-4">
-      {languages.map(({ code, label }) => (
-        <Button
-          key={code}
-          variant={language === code ? "default" : "outline"}
-          onClick={() => setLanguage(code)}
-          className="min-w-[80px]"
-        >
-          {label}
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" size="sm" className="gap-2">
+          <Languages className="h-4 w-4" />
+          <span>{currentLanguage?.flag}</span>
+          <span>{currentLanguage?.label}</span>
         </Button>
-      ))}
-    </div>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-[160px]">
+        {languages.map(({ code, label, flag }) => (
+          <DropdownMenuItem
+            key={code}
+            onClick={() => setLanguage(code)}
+            className="gap-2"
+          >
+            <span>{flag}</span>
+            <span>{label}</span>
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 
