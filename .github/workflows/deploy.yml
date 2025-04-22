@@ -38,7 +38,7 @@ jobs:
         run: npm run build
         env:
           # Make sure base path matches the repository name
-          VITE_BASE_PATH: '/japan-visa-calculator/'
+          VITE_BASE_PATH: '/japan-talent-score-calc/'
       
       - name: Setup Pages
         uses: actions/configure-pages@v3
