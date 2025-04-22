@@ -1,4 +1,16 @@
-# Welcome to your Lovable project
+# Japan Visa Calculator
+
+A multilingual calculator for Japan's Highly Skilled Professional visa points system.
+
+[![GitHub stars](https://img.shields.io/github/stars/lifeodyssey/japan-visa-calculator.svg)](https://github.com/lifeodyssey/japan-visa-calculator/stargazers)
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=lifeodyssey/japan-visa-calculator&type=Date)](https://star-history.com/#lifeodyssey/japan-visa-calculator&Date)
+
+## Author
+
+[@lifeodyssey](https://github.com/lifeodyssey)
 
 ## Project info
 

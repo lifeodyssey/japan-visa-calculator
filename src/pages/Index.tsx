@@ -1,6 +1,7 @@
 
 import PointsCalculator from "@/components/PointsCalculator";
 import LanguageSwitch from "@/components/LanguageSwitch";
+import GitHubStats from "@/components/GitHubStats";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Index = () => {
@@ -9,7 +10,8 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-japan-white to-gray-50 p-4">
       <header className="w-full max-w-4xl mb-8 text-center relative">
-        <div className="absolute right-0 top-0">
+        <div className="absolute right-0 top-0 flex gap-2">
+          <GitHubStats />
           <LanguageSwitch />
         </div>
         <h1 className="text-3xl md:text-4xl font-bold mb-4 font-japanese text-japan-black mt-12">
