@@ -1,4 +1,3 @@
-
 // Japan's Highly-Skilled Foreign Professional Points System Data
 
 // Academic Background
@@ -45,17 +44,6 @@ export const japanesePoints = [
   { id: "noJapanese", label: "无日语能力证明", points: 0 },
 ];
 
-// Bonus Points
-export const bonusPoints = [
-  { id: "graduateJapan", label: "日本大学或研究生毕业", points: 10 },
-  { id: "researchAchievements", label: "研究成果（专利等）", points: 20 },
-  { id: "topUniversity", label: "世界顶尖大学毕业", points: 10 },
-  { id: "innovationResearch", label: "创新研究项目", points: 10 },
-  { id: "highSalary", label: "年薪超过1500万日元", points: 10 },
-  { id: "investmentManagement", label: "投资/经营管理经验", points: 5 },
-  { id: "workInSpecialZone", label: "在日本特区就业", points: 10 },
-];
-
 // Point thresholds
 export const pointThresholds = {
   highlySkilled: 70, // 高度人才签证最低分数
@@ -63,46 +51,44 @@ export const pointThresholds = {
 };
 
 // Calculate total points
+import { allBonusPoints } from './bonusPoints';
+
 export const calculateTotalPoints = (selections: Record<string, boolean>) => {
   let total = 0;
 
-  // Process academic points
+  // Calculate points from basic categories
   academicPoints.forEach(item => {
     if (selections[item.id]) {
       total += item.points;
     }
   });
 
-  // Process career points
   careerPoints.forEach(item => {
     if (selections[item.id]) {
       total += item.points;
     }
   });
 
-  // Process salary points
   salaryPoints.forEach(item => {
     if (selections[item.id]) {
       total += item.points;
     }
   });
 
-  // Process age points
   agePoints.forEach(item => {
     if (selections[item.id]) {
       total += item.points;
     }
   });
 
-  // Process Japanese language points
   japanesePoints.forEach(item => {
     if (selections[item.id]) {
       total += item.points;
     }
   });
 
-  // Process bonus points
-  bonusPoints.forEach(item => {
+  // Calculate points from bonus categories
+  allBonusPoints.forEach(item => {
     if (selections[item.id]) {
       total += item.points;
     }

@@ -1,20 +1,24 @@
-
 import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { 
   academicPoints, 
   careerPoints, 
   salaryPoints, 
   agePoints, 
-  japanesePoints, 
-  bonusPoints,
+  japanesePoints,
   calculateTotalPoints,
   determineQualification,
   pointThresholds
 } from "@/data/japanPointsSystem";
+import {
+  bonusAcademicPoints,
+  bonusCareerPoints,
+  bonusLanguagePoints,
+  bonusSalaryPoints,
+  bonusSpecialPoints,
+} from "@/data/bonusPoints";
+import BonusPointsSection from "./BonusPointsSection";
 
 const PointsCalculator = () => {
   const [selections, setSelections] = useState<Record<string, boolean>>({});
@@ -143,13 +147,6 @@ const PointsCalculator = () => {
             "japanese"
           )}
 
-          {renderPointsSection(
-            "6. 额外加分项",
-            "请选择适用的额外加分项（可多选）",
-            bonusPoints,
-            "bonus"
-          )}
-
           <div className={`p-6 rounded-lg mt-8 ${
             qualificationStatus.qualified 
               ? qualificationStatus.level === "fastTrack" 
@@ -177,6 +174,45 @@ const PointsCalculator = () => {
           <p className="text-sm text-gray-500 mt-4 text-center">
             注：本计算器仅供参考，最终认定以日本出入国在留管理厅为准。
           </p>
+        </div>
+
+        <div className="mt-8 border-t pt-6">
+          <h2 className="text-xl font-bold mb-4">额外加分项目</h2>
+          
+          <BonusPointsSection
+            title="学历相关加分"
+            items={bonusAcademicPoints}
+            selections={selections}
+            onSelectionChange={handleCheckboxChange}
+          />
+
+          <BonusPointsSection
+            title="职业相关加分"
+            items={bonusCareerPoints}
+            selections={selections}
+            onSelectionChange={handleCheckboxChange}
+          />
+
+          <BonusPointsSection
+            title="语言能力加分"
+            items={bonusLanguagePoints}
+            selections={selections}
+            onSelectionChange={handleCheckboxChange}
+          />
+
+          <BonusPointsSection
+            title="收入相关加分"
+            items={bonusSalaryPoints}
+            selections={selections}
+            onSelectionChange={handleCheckboxChange}
+          />
+
+          <BonusPointsSection
+            title="特殊加分项目"
+            items={bonusSpecialPoints}
+            selections={selections}
+            onSelectionChange={handleCheckboxChange}
+          />
         </div>
       </CardContent>
     </Card>
