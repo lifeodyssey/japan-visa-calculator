@@ -11,7 +11,7 @@ import { LanguageProvider } from "./contexts/LanguageContext";
 const queryClient = new QueryClient();
 
 // Get the base path from environment or use default
-const basePath = import.meta.env.BASE_URL || '/japan-talent-score-calc/';
+const basePath = import.meta.env.BASE_URL || '/japan-visa-calculator/';
 
 const App = () => (
   <QueryClientProvider client={queryClient}>

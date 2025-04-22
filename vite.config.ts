@@ -6,7 +6,7 @@ import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
   // Ensure base path is correctly set
-  base: process.env.VITE_BASE_PATH || '/japan-talent-score-calc/',
+  base: process.env.VITE_BASE_PATH || '/japan-visa-calculator/',
   server: {
     host: "::",
     port: 8080,
