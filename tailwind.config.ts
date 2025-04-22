@@ -32,6 +32,9 @@ export default {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))'
 				},
+				'japan-red': 'hsl(var(--japan-red))',
+				'japan-white': 'hsl(var(--japan-white))',
+				'japan-black': 'hsl(var(--japan-black))',
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))'
