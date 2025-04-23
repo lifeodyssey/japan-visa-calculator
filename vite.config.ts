@@ -17,4 +17,18 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    // Ensure proper MIME type handling
+    rollupOptions: {
+      output: {
+        format: 'es',
+      },
+    },
+  },
+  preview: {
+    // Configure preview server
+    port: 4173,
+    strictPort: true,
+    host: true,
+  },
 }));
