@@ -1,17 +1,16 @@
-
 // Japan's Highly-Skilled Foreign Professional Bonus Points System
 
 export const bonusAcademicPoints = [
   { 
     id: "bonus1", 
-    label: "①在日本指定的大学获得学位", 
-    description: "从日本文部科学省指定的大学获得学士/硕士/博士学位",
+    label: "bonus1.label", 
+    description: "bonus1.description",
     points: 10 
   },
   { 
     id: "bonus2", 
-    label: "②在世界前300名大学获得学位", 
-    description: "从世界QS排名前300名的大学获得学士/硕士/博士学位",
+    label: "bonus2.label", 
+    description: "bonus2.description",
     points: 10 
   },
 ];
@@ -19,20 +18,20 @@ export const bonusAcademicPoints = [
 export const bonusCareerPoints = [
   { 
     id: "bonus3", 
-    label: "③具有高级专业职业资格", 
-    description: "持有日本认可的高级专业职业资格证书（如法务大臣指定的资格）",
+    label: "bonus3.label", 
+    description: "bonus3.description",
     points: 5 
   },
   { 
     id: "bonus4", 
-    label: "④在成长企业工作", 
-    description: "在日本经济产业省认定的成长企业就职",
+    label: "bonus4.label", 
+    description: "bonus4.description",
     points: 10 
   },
   { 
     id: "bonus5", 
-    label: "⑤创新性研究成果", 
-    description: "作为发明人获得相关专利，或在专业期刊发表研究论文",
+    label: "bonus5.label", 
+    description: "bonus5.description",
     points: 20 
   },
 ];
@@ -40,14 +39,14 @@ export const bonusCareerPoints = [
 export const bonusLanguagePoints = [
   { 
     id: "bonus6", 
-    label: "⑥高级日语能力", 
-    description: "JLPT N1级或BJT商务日语考试480分以上",
+    label: "bonus6.label", 
+    description: "bonus6.description",
     points: 15 
   },
   { 
     id: "bonus7", 
-    label: "⑦高级英语能力", 
-    description: "TOEIC分数780分以上或同等水平",
+    label: "bonus7.label", 
+    description: "bonus7.description",
     points: 10 
   },
 ];
@@ -55,14 +54,14 @@ export const bonusLanguagePoints = [
 export const bonusSalaryPoints = [
   { 
     id: "bonus8", 
-    label: "⑧年收入超过1500万日元", 
-    description: "年收入（含奖金）超过1500万日元",
+    label: "bonus8.label", 
+    description: "bonus8.description",
     points: 10 
   },
   { 
     id: "bonus9", 
-    label: "⑨年收入超过1000万日元", 
-    description: "年收入（含奖金）超过1000万日元",
+    label: "bonus9.label", 
+    description: "bonus9.description",
     points: 5 
   },
 ];
@@ -70,38 +69,38 @@ export const bonusSalaryPoints = [
 export const bonusSpecialPoints = [
   { 
     id: "bonus10", 
-    label: "⑩在国家战略特区就业", 
-    description: "在日本政府指定的国家战略特区内就业",
+    label: "bonus10.label", 
+    description: "bonus10.description",
     points: 10 
   },
   { 
     id: "bonus11", 
-    label: "⑪具有投资经营管理经验", 
-    description: "过去3年内有投资或经营管理经验",
+    label: "bonus11.label", 
+    description: "bonus11.description",
     points: 5 
   },
   { 
     id: "bonus12", 
-    label: "⑫获得日本政府表彰", 
-    description: "获得日本政府相关部门颁发的表彰或奖项",
+    label: "bonus12.label", 
+    description: "bonus12.description",
     points: 10 
   },
   { 
     id: "bonus13", 
-    label: "⑬在日本注册特定创新活动", 
-    description: "在日本注册为特定创新活动实施者",
+    label: "bonus13.label", 
+    description: "bonus13.description",
     points: 10 
   },
   { 
     id: "bonus14", 
-    label: "⑭完成大学院研究生课程", 
-    description: "在日本完成研究生课程学习（包括MBA等）",
+    label: "bonus14.label", 
+    description: "bonus14.description",
     points: 5 
   },
   { 
     id: "bonus15", 
-    label: "⑮在特定研究机构工作", 
-    description: "在日本指定的研究机构从事研究工作",
+    label: "bonus15.label", 
+    description: "bonus15.description",
     points: 10 
   },
 ];

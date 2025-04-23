@@ -7,6 +7,7 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card"
 import { Info } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface BonusPointsSectionProps {
   title: string;
@@ -28,6 +29,8 @@ const BonusPointsSection: React.FC<BonusPointsSectionProps> = ({
   onSelectionChange,
   category = "bonus",
 }) => {
+  const { t } = useLanguage();
+  
   return (
     <div className="mb-6">
       <h3 className="text-lg font-bold mb-2">{title}</h3>
@@ -44,18 +47,18 @@ const BonusPointsSection: React.FC<BonusPointsSectionProps> = ({
                 className="mt-0.5"
               />
               <div className="flex flex-wrap items-center gap-2 min-w-0">
-                <Label htmlFor={item.id} className="cursor-pointer break-words">{item.label}</Label>
+                <Label htmlFor={item.id} className="cursor-pointer break-words">{t(item.label)}</Label>
                 <HoverCard>
                   <HoverCardTrigger>
                     <Info className="h-4 w-4 text-gray-500 flex-shrink-0" />
                   </HoverCardTrigger>
                   <HoverCardContent className="w-80">
-                    <p className="text-sm">{item.description}</p>
+                    <p className="text-sm">{t(item.description)}</p>
                   </HoverCardContent>
                 </HoverCard>
               </div>
             </div>
-            <div className="font-semibold text-japan-red flex-shrink-0 ml-2">{item.points} 分</div>
+            <div className="font-semibold text-japan-red flex-shrink-0 ml-2">{item.points} {t('points')}</div>
           </div>
         ))}
       </div>

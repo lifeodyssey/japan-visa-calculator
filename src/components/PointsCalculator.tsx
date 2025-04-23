@@ -164,30 +164,23 @@ const PointsCalculator = () => {
       
       <Card className="w-full max-w-4xl mx-auto shadow-lg border-0">
         <CardHeader className="bg-gradient-to-r from-japan-red to-japan-blue text-white rounded-t-xl">
-          <CardTitle className="text-2xl text-center font-bold">{t('title')}</CardTitle>
-          <CardDescription className="text-white text-center opacity-90">
-            {t('subtitle')}
-          </CardDescription>
+          <div className="flex justify-between items-center">
+            <div className="text-white font-medium">{t('currentPoints')}: {totalPoints}</div>
+            <div className="text-white font-medium">{t('targetPoints')}: {pointThresholds.highlySkilled}</div>
+          </div>
+          <Progress 
+            value={(totalPoints / pointThresholds.fastTrack) * 100} 
+            className={`h-3 rounded-full mt-2 ${
+              totalPoints >= pointThresholds.highlySkilled 
+                ? 'bg-green-500' 
+                : totalPoints >= pointThresholds.highlySkilled * 0.8
+                ? 'bg-yellow-500'
+                : 'bg-red-500'
+            }`}
+          />
         </CardHeader>
         
         <CardContent className="p-6">
-          <div className="mb-8 bg-gray-50 p-4 rounded-xl">
-            <div className="flex flex-wrap justify-between mb-2 gap-2">
-              <span className="font-semibold text-gray-700">{t('currentPoints')}: {totalPoints}</span>
-              <span className="font-semibold text-gray-700">{t('targetPoints')}: {pointThresholds.highlySkilled}</span>
-            </div>
-            <Progress 
-              value={(totalPoints / pointThresholds.fastTrack) * 100} 
-              className={`h-3 rounded-full ${
-                totalPoints >= pointThresholds.highlySkilled 
-                  ? 'bg-green-500' 
-                  : totalPoints >= pointThresholds.highlySkilled * 0.8
-                  ? 'bg-yellow-500'
-                  : 'bg-red-500'
-              }`}
-            />
-          </div>
-
           {renderSection()}
 
           <div className="mt-8">
@@ -250,16 +243,18 @@ const PointsCalculator = () => {
                 ? "bg-green-50 text-green-800 border border-green-200"
                 : "bg-blue-50 text-blue-800 border border-blue-200"
               : "bg-red-50 text-red-800 border border-red-200"
-          } shadow-sm hover:shadow-md transition-all duration-300`}>
-            <h3 className="text-lg sm:text-xl font-bold mb-2">{t('evaluationTitle')}</h3>
-            <p className="text-base sm:text-lg mb-4">{qualificationStatus.message}</p>
+          }`}>
+            <h3 className="text-lg font-semibold mb-2">{t('evaluationTitle')}</h3>
+            <p className="text-base">
+              {t(qualificationStatus.message)}
+            </p>
             
             {qualificationStatus.qualified && (
-              <div className="space-y-4">
-                <h4 className="font-bold">{t('benefits.title')}</h4>
-                <ul className="list-disc pl-5 space-y-2">
-                  {t('benefits.items').split(',').map((benefit, index) => (
-                    <li key={index} className="text-gray-700 break-words">{benefit}</li>
+              <div className="mt-4">
+                <h4 className="font-medium mb-2">{t('benefits.title')}</h4>
+                <ul className="list-disc pl-5 space-y-1">
+                  {t('benefits.items', { returnObjects: true }).map((item: string, idx: number) => (
+                    <li key={idx}>{item}</li>
                   ))}
                 </ul>
               </div>
@@ -280,7 +275,7 @@ const PointsCalculator = () => {
             <h3 className="text-lg font-bold mb-2">{t('printSummary')}</h3>
             <p className="text-sm mb-2">{t('printDate')}: {new Date().toLocaleDateString()}</p>
             <p className="text-sm mb-2">{t('printPoints')}: {totalPoints}</p>
-            <p className="text-sm mb-2">{t('printStatus')}: {qualificationStatus.message}</p>
+            <p className="text-sm mb-2">{t('printStatus')}: {t(qualificationStatus.message)}</p>
           </div>
 
           <p className="text-sm text-gray-500 mt-8 text-center">

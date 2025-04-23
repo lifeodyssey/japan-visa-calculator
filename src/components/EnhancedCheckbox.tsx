@@ -8,6 +8,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface EnhancedCheckboxProps {
   id: string;
@@ -28,6 +29,8 @@ const EnhancedCheckbox: React.FC<EnhancedCheckboxProps> = ({
   tooltip,
   isCloseToQualifying,
 }) => {
+  const { t } = useLanguage();
+  
   return (
     <TooltipProvider>
       <Tooltip>
@@ -47,9 +50,9 @@ const EnhancedCheckbox: React.FC<EnhancedCheckboxProps> = ({
                 checked={checked}
                 onCheckedChange={onCheckedChange}
                 className="h-5 w-5 border-2 mt-0.5"
-                aria-label={`Select ${label}`}
+                aria-label={`Select ${t(label)}`}
               />
-              <Label htmlFor={id} className="cursor-pointer text-gray-700 break-words">{label}</Label>
+              <Label htmlFor={id} className="cursor-pointer text-gray-700 break-words">{t(label)}</Label>
             </div>
             <motion.div 
               className="font-semibold text-japan-red bg-red-50 px-3 py-1 rounded-full text-sm flex-shrink-0 ml-2"
@@ -59,7 +62,7 @@ const EnhancedCheckbox: React.FC<EnhancedCheckboxProps> = ({
               }}
               transition={{ duration: 0.3 }}
             >
-              {points} 分
+              {points} {t('points')}
             </motion.div>
           </motion.div>
         </TooltipTrigger>

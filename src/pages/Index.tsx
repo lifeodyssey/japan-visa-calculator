@@ -35,7 +35,7 @@ const Index = () => {
           <p className="mb-2">{t('disclaimer')}</p>
           <p className="mb-2">© {new Date().getFullYear()} {t('copyright')}</p>
           <p className="text-japan-red font-medium">
-            Created by <a href="https://github.com/lifeodyssey" target="_blank" rel="noopener noreferrer" className="hover:underline transition-colors duration-200">lifeodyssey</a>
+            {t('createdBy')} <a href="https://github.com/lifeodyssey" target="_blank" rel="noopener noreferrer" className="hover:underline transition-colors duration-200">lifeodyssey</a>
           </p>
         </footer>
       </div>
