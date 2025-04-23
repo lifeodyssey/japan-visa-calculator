@@ -3,7 +3,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
-import { CompareArrows } from "lucide-react";
+import { ArrowRightLeft } from "lucide-react";
 
 interface CompareViewProps {
   currentPoints: number;
@@ -41,7 +41,7 @@ const CompareView: React.FC<CompareViewProps> = ({
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button variant="outline" size="icon" title={t('compare')} className="no-print">
-          <CompareArrows className="h-4 w-4" />
+          <ArrowRightLeft className="h-4 w-4" />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[600px] no-print">
