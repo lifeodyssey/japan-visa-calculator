@@ -1,0 +1,145 @@
+@media print {
+  /* Hide elements that shouldn't be printed */
+  .no-print {
+    display: none !important;
+  }
+
+  /* Show elements that should only be visible when printing */
+  .print-only {
+    display: block !important;
+  }
+
+  /* Reset sticky positioning */
+  .sticky {
+    position: static !important;
+  }
+
+  /* Improve text contrast */
+  body {
+    color: black !important;
+    background: white !important;
+  }
+
+  /* Remove shadows and borders */
+  .shadow-sm,
+  .shadow-md,
+  .shadow-lg,
+  .shadow-xl,
+  .shadow-2xl {
+    box-shadow: none !important;
+  }
+
+  /* Ensure proper page breaks */
+  .page-break-before {
+    page-break-before: always;
+  }
+
+  .page-break-after {
+    page-break-after: always;
+  }
+
+  /* Improve card appearance */
+  .card {
+    border: 1px solid #ddd !important;
+    box-shadow: none !important;
+  }
+
+  /* Ensure proper spacing */
+  .p-4, .p-6, .p-8 {
+    padding: 1rem !important;
+  }
+
+  .m-4, .m-6, .m-8 {
+    margin: 1rem !important;
+  }
+
+  /* Improve progress bar visibility */
+  .progress {
+    border: 1px solid #ddd !important;
+  }
+
+  /* Ensure proper text colors */
+  .text-gray-600,
+  .text-gray-700,
+  .text-gray-800 {
+    color: black !important;
+  }
+
+  /* Improve button visibility */
+  button {
+    border: 1px solid #ddd !important;
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Ensure proper link colors */
+  a {
+    color: black !important;
+    text-decoration: underline !important;
+  }
+
+  /* Improve checkbox visibility */
+  input[type="checkbox"] {
+    border: 1px solid #ddd !important;
+  }
+
+  /* Ensure proper background colors */
+  .bg-white,
+  .bg-gray-50,
+  .bg-gray-100 {
+    background: white !important;
+  }
+
+  /* Improve section visibility */
+  .section {
+    border: 1px solid #ddd !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* Ensure proper font sizes */
+  .text-sm {
+    font-size: 12pt !important;
+  }
+
+  .text-base {
+    font-size: 14pt !important;
+  }
+
+  .text-lg {
+    font-size: 16pt !important;
+  }
+
+  .text-xl {
+    font-size: 18pt !important;
+  }
+
+  .text-2xl {
+    font-size: 20pt !important;
+  }
+
+  /* Improve spacing between sections */
+  .space-y-3 > * + * {
+    margin-top: 1rem !important;
+  }
+
+  .space-y-4 > * + * {
+    margin-top: 1.5rem !important;
+  }
+
+  /* Ensure proper margins */
+  .mt-4 {
+    margin-top: 1rem !important;
+  }
+
+  .mt-8 {
+    margin-top: 2rem !important;
+  }
+
+  .mb-4 {
+    margin-bottom: 1rem !important;
+  }
+
+  .mb-8 {
+    margin-bottom: 2rem !important;
+  }
+} 

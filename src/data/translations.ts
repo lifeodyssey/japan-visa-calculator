@@ -1,4 +1,3 @@
-
 export type Language = 'zh' | 'en' | 'ja';
 
 export const translations = {
@@ -45,7 +44,28 @@ export const translations = {
         '可聘请家政人员（在特定条件下）',
         '行政手续简化'
       ]
-    }
+    },
+    printSummary: '打印摘要',
+    printDate: '日期',
+    printPoints: '总积分',
+    printStatus: '状态',
+    compare: '比较',
+    compareTitle: '比较选择',
+    currentSelection: '当前选择',
+    compareSelection: '比较选择',
+    apply: '应用',
+    reset: '重置',
+    save: '保存',
+    share: '分享',
+    print: '打印',
+    resetSuccess: '重置成功',
+    resetDescription: '所有选择已清除',
+    saveSuccess: '保存成功',
+    saveDescription: '您的选择已保存',
+    shareText: '我的日本签证积分：',
+    points: '分',
+    copySuccess: '已复制到剪贴板',
+    copyDescription: '分享文本已复制到剪贴板'
   },
   en: {
     title: 'Japan Highly-Skilled Professional Points Calculator',
@@ -90,7 +110,28 @@ export const translations = {
         'Permission to hire domestic workers (under specific conditions)',
         'Simplified administrative procedures'
       ]
-    }
+    },
+    printSummary: 'Print Summary',
+    printDate: 'Date',
+    printPoints: 'Total Points',
+    printStatus: 'Status',
+    compare: 'Compare',
+    compareTitle: 'Compare Selections',
+    currentSelection: 'Current Selection',
+    compareSelection: 'Compare Selection',
+    apply: 'Apply',
+    reset: 'Reset',
+    save: 'Save',
+    share: 'Share',
+    print: 'Print',
+    resetSuccess: 'Reset Successful',
+    resetDescription: 'All selections have been cleared',
+    saveSuccess: 'Save Successful',
+    saveDescription: 'Your selections have been saved',
+    shareText: 'My Japan Visa Points:',
+    points: 'points',
+    copySuccess: 'Copied to Clipboard',
+    copyDescription: 'Share text has been copied to your clipboard'
   },
   ja: {
     title: '日本高度専門職ポイント計算ツール',
@@ -135,6 +176,27 @@ export const translations = {
         '一定条件下で家事使用人の帯同が可能',
         '各種手続きの優遇措置'
       ]
-    }
+    },
+    printSummary: '印刷サマリー',
+    printDate: '日付',
+    printPoints: '合計ポイント',
+    printStatus: 'ステータス',
+    compare: '比較',
+    compareTitle: '選択の比較',
+    currentSelection: '現在の選択',
+    compareSelection: '比較選択',
+    apply: '適用',
+    reset: 'リセット',
+    save: '保存',
+    share: '共有',
+    print: '印刷',
+    resetSuccess: 'リセット成功',
+    resetDescription: 'すべての選択がクリアされました',
+    saveSuccess: '保存成功',
+    saveDescription: '選択が保存されました',
+    shareText: '私の日本ビザポイント：',
+    points: 'ポイント',
+    copySuccess: 'クリップボードにコピーしました',
+    copyDescription: '共有テキストがクリップボードにコピーされました'
   }
 };
