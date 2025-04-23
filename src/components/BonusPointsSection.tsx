@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
@@ -34,20 +33,21 @@ const BonusPointsSection: React.FC<BonusPointsSectionProps> = ({
       <h3 className="text-lg font-bold mb-2">{title}</h3>
       <div className="space-y-3">
         {items.map((item) => (
-          <div key={item.id} className="flex items-center space-x-2 justify-between border p-3 rounded-md hover:bg-gray-50">
-            <div className="flex items-center space-x-2 flex-1">
+          <div key={item.id} className="flex items-center justify-between border p-3 rounded-md hover:bg-gray-50">
+            <div className="flex items-start space-x-2 flex-1 min-w-0">
               <Checkbox
                 id={item.id}
                 checked={selections[item.id] || false}
                 onCheckedChange={(checked) =>
                   onSelectionChange(item.id, checked as boolean, category)
                 }
+                className="mt-0.5"
               />
-              <div className="flex items-center gap-2">
-                <Label htmlFor={item.id} className="cursor-pointer">{item.label}</Label>
+              <div className="flex flex-wrap items-center gap-2 min-w-0">
+                <Label htmlFor={item.id} className="cursor-pointer break-words">{item.label}</Label>
                 <HoverCard>
                   <HoverCardTrigger>
-                    <Info className="h-4 w-4 text-gray-500" />
+                    <Info className="h-4 w-4 text-gray-500 flex-shrink-0" />
                   </HoverCardTrigger>
                   <HoverCardContent className="w-80">
                     <p className="text-sm">{item.description}</p>
@@ -55,7 +55,7 @@ const BonusPointsSection: React.FC<BonusPointsSectionProps> = ({
                 </HoverCard>
               </div>
             </div>
-            <div className="font-semibold text-japan-red">{item.points} 分</div>
+            <div className="font-semibold text-japan-red flex-shrink-0 ml-2">{item.points} 分</div>
           </div>
         ))}
       </div>

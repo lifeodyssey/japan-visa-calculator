@@ -44,12 +44,12 @@ const CompareView: React.FC<CompareViewProps> = ({
           <ArrowRightLeft className="h-4 w-4" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[600px] no-print">
+      <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto no-print">
         <DialogHeader>
           <DialogTitle>{t('compareTitle')}</DialogTitle>
         </DialogHeader>
         
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-4">
             <h3 className="font-semibold">{t('currentSelection')}</h3>
             <div className="bg-gray-50 p-4 rounded-lg">
@@ -73,7 +73,7 @@ const CompareView: React.FC<CompareViewProps> = ({
             <div className="bg-gray-50 p-4 rounded-lg">
               <div className="flex justify-between mb-2">
                 <span className="text-sm font-medium">{t('points')}:</span>
-                <span className="text-sm font-medium">
+                <span className="text-sm font-medium truncate">
                   {Object.entries(compareSelections).reduce((acc, [key, value]) => {
                     if (value) {
                       // Calculate points based on the selection

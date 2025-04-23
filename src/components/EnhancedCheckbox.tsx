@@ -33,7 +33,7 @@ const EnhancedCheckbox: React.FC<EnhancedCheckboxProps> = ({
       <Tooltip>
         <TooltipTrigger asChild>
           <motion.div
-            className={`flex items-center space-x-2 justify-between bg-white/90 p-4 rounded-lg hover:bg-white transition-all duration-200 border ${
+            className={`flex items-start space-x-2 justify-between bg-white/90 p-4 rounded-lg hover:bg-white transition-all duration-200 border ${
               checked ? 'border-japan-red/50' : 'border-gray-100'
             } ${
               isCloseToQualifying ? 'ring-2 ring-green-500/50' : ''
@@ -41,18 +41,18 @@ const EnhancedCheckbox: React.FC<EnhancedCheckboxProps> = ({
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            <div className="flex items-center space-x-3">
+            <div className="flex items-start space-x-3 min-w-0">
               <Checkbox 
                 id={id} 
                 checked={checked}
                 onCheckedChange={onCheckedChange}
-                className="h-5 w-5 border-2"
+                className="h-5 w-5 border-2 mt-0.5"
                 aria-label={`Select ${label}`}
               />
-              <Label htmlFor={id} className="cursor-pointer text-gray-700">{label}</Label>
+              <Label htmlFor={id} className="cursor-pointer text-gray-700 break-words">{label}</Label>
             </div>
             <motion.div 
-              className="font-semibold text-japan-red bg-red-50 px-3 py-1 rounded-full text-sm"
+              className="font-semibold text-japan-red bg-red-50 px-3 py-1 rounded-full text-sm flex-shrink-0 ml-2"
               animate={{
                 scale: checked ? [1, 1.1, 1] : 1,
                 backgroundColor: checked ? ['#FEE2E2', '#FECACA', '#FEE2E2'] : '#FEE2E2',

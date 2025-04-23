@@ -172,7 +172,7 @@ const PointsCalculator = () => {
         
         <CardContent className="p-6">
           <div className="mb-8 bg-gray-50 p-4 rounded-xl">
-            <div className="flex justify-between mb-2">
+            <div className="flex flex-wrap justify-between mb-2 gap-2">
               <span className="font-semibold text-gray-700">{t('currentPoints')}: {totalPoints}</span>
               <span className="font-semibold text-gray-700">{t('targetPoints')}: {pointThresholds.highlySkilled}</span>
             </div>
@@ -244,22 +244,22 @@ const PointsCalculator = () => {
             </div>
           </div>
 
-          <div className={`mt-12 p-6 rounded-xl ${
+          <div className={`mt-12 p-4 sm:p-6 rounded-xl ${
             qualificationStatus.qualified 
               ? qualificationStatus.level === "fastTrack" 
                 ? "bg-green-50 text-green-800 border border-green-200"
                 : "bg-blue-50 text-blue-800 border border-blue-200"
               : "bg-red-50 text-red-800 border border-red-200"
           } shadow-sm hover:shadow-md transition-all duration-300`}>
-            <h3 className="text-xl font-bold mb-2">{t('evaluationTitle')}</h3>
-            <p className="text-lg mb-4">{qualificationStatus.message}</p>
+            <h3 className="text-lg sm:text-xl font-bold mb-2">{t('evaluationTitle')}</h3>
+            <p className="text-base sm:text-lg mb-4">{qualificationStatus.message}</p>
             
             {qualificationStatus.qualified && (
               <div className="space-y-4">
                 <h4 className="font-bold">{t('benefits.title')}</h4>
                 <ul className="list-disc pl-5 space-y-2">
                   {t('benefits.items').split(',').map((benefit, index) => (
-                    <li key={index} className="text-gray-700">{benefit}</li>
+                    <li key={index} className="text-gray-700 break-words">{benefit}</li>
                   ))}
                 </ul>
               </div>
