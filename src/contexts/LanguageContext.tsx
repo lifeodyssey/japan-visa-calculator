@@ -5,7 +5,7 @@ import { Language, translations } from '@/data/translations';
 type LanguageContextType = {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (key: string) => string;
+  t: (key: string, options?: {returnObjects?: boolean}) => any;
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -13,8 +13,22 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
   const [language, setLanguage] = useState<Language>('zh');
 
-  const t = (path: string) => {
-    return path.split('.').reduce((obj, key) => obj && obj[key], translations[language]) as string || path;
+  const t = (path: string, options?: {returnObjects?: boolean}) => {
+    // Handle dot notation for nested objects
+    const getValue = (obj: any, path: string) => {
+      const keys = path.split('.');
+      return keys.reduce((o, k) => (o || {})[k], obj);
+    };
+
+    const value = getValue(translations[language], path);
+    
+    // Return original path if translation not found
+    if (value === undefined) return path;
+    
+    // Handle returning objects (like for arrays) if returnObjects is true
+    if (options?.returnObjects) return value;
+    
+    return value;
   };
 
   return (

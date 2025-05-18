@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -35,7 +36,6 @@ const AcademicSection: React.FC<AcademicSectionProps> = ({
             points={item.points}
             checked={selections[item.id] || false}
             onCheckedChange={(checked) => onSelectionChange(item.id, checked, "academic")}
-            tooltip={item.tooltip}
             isCloseToQualifying={isCloseToQualifying}
           />
         ))}
@@ -44,4 +44,4 @@ const AcademicSection: React.FC<AcademicSectionProps> = ({
   );
 };
 
-export default AcademicSection; 
+export default AcademicSection;

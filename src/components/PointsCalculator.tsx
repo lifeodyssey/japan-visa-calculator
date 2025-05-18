@@ -253,7 +253,7 @@ const PointsCalculator = () => {
               <div className="mt-4">
                 <h4 className="font-medium mb-2">{t('benefits.title')}</h4>
                 <ul className="list-disc pl-5 space-y-1">
-                  {t('benefits.items', { returnObjects: true }).map((item: string, idx: number) => (
+                  {t('benefits.items').map((item: string, idx: number) => (
                     <li key={idx}>{item}</li>
                   ))}
                 </ul>
