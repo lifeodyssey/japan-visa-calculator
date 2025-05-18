@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
@@ -29,14 +30,14 @@ const BonusPointsSection: React.FC<BonusPointsSectionProps> = ({
   onSelectionChange,
   category = "bonus",
 }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   
   return (
     <div className="mb-6">
       <h3 className="text-lg font-bold mb-2">{title}</h3>
       <div className="space-y-3">
         {items.map((item) => (
-          <div key={item.id} className="flex items-center justify-between border p-3 rounded-md hover:bg-gray-50">
+          <div key={item.id} className="flex items-center justify-between border p-3 rounded-md hover:bg-gray-50 transition-all duration-200">
             <div className="flex items-start space-x-2 flex-1 min-w-0">
               <Checkbox
                 id={item.id}
@@ -47,10 +48,20 @@ const BonusPointsSection: React.FC<BonusPointsSectionProps> = ({
                 className="mt-0.5"
               />
               <div className="flex flex-wrap items-center gap-2 min-w-0">
-                <Label htmlFor={item.id} className="cursor-pointer break-words">{t(item.label)}</Label>
+                <Label 
+                  htmlFor={item.id} 
+                  className="cursor-pointer break-words font-medium"
+                >
+                  {t(item.label)}
+                </Label>
                 <HoverCard>
-                  <HoverCardTrigger>
-                    <Info className="h-4 w-4 text-gray-500 flex-shrink-0" />
+                  <HoverCardTrigger asChild>
+                    <button 
+                      className="inline-flex items-center justify-center rounded-full p-1 hover:bg-gray-100"
+                      aria-label="More information"
+                    >
+                      <Info className="h-4 w-4 text-gray-500 flex-shrink-0" />
+                    </button>
                   </HoverCardTrigger>
                   <HoverCardContent className="w-80">
                     <p className="text-sm">{t(item.description)}</p>
