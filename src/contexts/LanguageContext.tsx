@@ -17,13 +17,24 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     // Handle dot notation for nested objects
     const getValue = (obj: any, path: string) => {
       const keys = path.split('.');
-      return keys.reduce((o, k) => (o || {})[k], obj);
+      let value = obj;
+      
+      // Traverse the object using the path
+      for (const key of keys) {
+        if (value === undefined || value === null) return undefined;
+        value = value[key];
+      }
+      
+      return value;
     };
 
     const value = getValue(translations[language], path);
     
     // Return original path if translation not found
-    if (value === undefined) return path;
+    if (value === undefined) {
+      console.warn(`Translation not found: ${path}`);
+      return path;
+    }
     
     // Handle returning objects (like for arrays) if returnObjects is true
     if (options?.returnObjects) return value;

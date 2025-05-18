@@ -30,7 +30,7 @@ const BonusPointsSection: React.FC<BonusPointsSectionProps> = ({
   onSelectionChange,
   category = "bonus",
 }) => {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   
   return (
     <div className="mb-6">

@@ -32,7 +32,7 @@ const AgeSection: React.FC<AgeSectionProps> = ({
           <EnhancedCheckbox
             key={item.id}
             id={item.id}
-            label={item.label}
+            label={t(item.label)}
             points={item.points}
             checked={selections[item.id] || false}
             onCheckedChange={(checked) => onSelectionChange(item.id, checked, "age")}
