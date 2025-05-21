@@ -67,19 +67,23 @@ export const translations = {
     copySuccess: '已复制到剪贴板',
     copyDescription: '分享文本已复制到剪贴板',
     createdBy: '创建者：',
-    
+    scrollToTop: '回到顶部',
+    sections: '章节',
+    actions: '操作',
+    qualified: '已达标',
+
     // Academic points labels
     doctor: '博士学位',
     master: '硕士学位',
     bachelor: '学士学位',
-    
+
     // Career points labels
     '10plus': '10年以上',
     '7to9': '7年至9年',
     '5to6': '5年至6年',
     '3to4': '3年至4年',
     'less3': '3年以下',
-    
+
     // Salary points labels
     'salary10M': '1000万日元以上',
     'salary9M': '900万至1000万日元',
@@ -90,23 +94,23 @@ export const translations = {
     'salary4M': '400万至500万日元',
     'salary3M': '300万至400万日元',
     'salaryLess3M': '300万日元以下',
-    
+
     // Age points labels
     'age29': '29岁以下',
     'age30to34': '30至34岁',
     'age35to39': '35至39岁',
     'age40plus': '40岁及以上',
-    
+
     // Japanese language proficiency labels
     'jlptN1': 'JLPT N1级或BJT商务日语480分以上',
     'jlptN2': 'JLPT N2级或BJT商务日语400至479分',
     'noJapanese': '无日语能力证明',
-    
+
     // Result messages
     'fastTrackMessage': '恭喜！您的得分达到了高度专门人才快速通道水平（80分以上）',
     'highlySkillMessage': '恭喜！您的得分达到了高度专门人才水平（70分以上）',
     'notQualifiedMessage': '您的得分未达到高度专门人才签证要求（低于70分）',
-    
+
     // Bonus points
     'bonus1.label': '①在日本指定的大学获得学位',
     'bonus1.description': '从日本文部科学省指定的大学获得学士/硕士/博士学位',
@@ -205,19 +209,23 @@ export const translations = {
     copySuccess: 'Copied to Clipboard',
     copyDescription: 'Share text has been copied to your clipboard',
     createdBy: 'Created by',
-    
+    scrollToTop: 'Scroll to Top',
+    sections: 'Sections',
+    actions: 'Actions',
+    qualified: 'Qualified',
+
     // Academic points labels
     doctor: 'Doctoral Degree',
     master: 'Master\'s Degree',
     bachelor: 'Bachelor\'s Degree',
-    
+
     // Career points labels
     '10plus': '10+ years',
     '7to9': '7-9 years',
     '5to6': '5-6 years',
     '3to4': '3-4 years',
     'less3': 'Less than 3 years',
-    
+
     // Salary points labels
     'salary10M': 'Over 10 million yen',
     'salary9M': '9-10 million yen',
@@ -228,23 +236,23 @@ export const translations = {
     'salary4M': '4-5 million yen',
     'salary3M': '3-4 million yen',
     'salaryLess3M': 'Less than 3 million yen',
-    
+
     // Age points labels
     'age29': 'Under 30 years old',
     'age30to34': '30-34 years old',
     'age35to39': '35-39 years old',
     'age40plus': '40 years old or older',
-    
+
     // Japanese language proficiency labels
     'jlptN1': 'JLPT N1 or BJT 480+',
     'jlptN2': 'JLPT N2 or BJT 400-479',
     'noJapanese': 'No Japanese proficiency',
-    
+
     // Result messages
     'fastTrackMessage': 'Congratulations! You qualify for the Fast Track (80+ points)',
     'highlySkillMessage': 'Congratulations! You qualify as a Highly-Skilled Professional (70+ points)',
     'notQualifiedMessage': 'You do not yet qualify for the Highly-Skilled Professional visa (below 70 points)',
-    
+
     // Bonus points
     'bonus1.label': '① Degree from Designated Japanese University',
     'bonus1.description': 'Bachelor/Master/Doctoral degree from a university designated by MEXT Japan',
@@ -343,19 +351,23 @@ export const translations = {
     copySuccess: 'クリップボードにコピーしました',
     copyDescription: '共有テキストがクリップボードにコピーされました',
     createdBy: '制作者：',
-    
+    scrollToTop: 'トップに戻る',
+    sections: 'セクション',
+    actions: 'アクション',
+    qualified: '適格',
+
     // Academic points labels
     doctor: '博士号',
     master: '修士号',
     bachelor: '学士号',
-    
+
     // Career points labels
     '10plus': '10年以上',
     '7to9': '7〜9年',
     '5to6': '5〜6年',
     '3to4': '3〜4年',
     'less3': '3年未満',
-    
+
     // Salary points labels
     'salary10M': '1000万円以上',
     'salary9M': '900万〜1000万円',
@@ -366,23 +378,23 @@ export const translations = {
     'salary4M': '400万〜500万円',
     'salary3M': '300万〜400万円',
     'salaryLess3M': '300万円未満',
-    
+
     // Age points labels
     'age29': '29歳以下',
     'age30to34': '30〜34歳',
     'age35to39': '35〜39歳',
     'age40plus': '40歳以上',
-    
+
     // Japanese language proficiency labels
     'jlptN1': 'JLPT N1またはBJT 480点以上',
     'jlptN2': 'JLPT N2またはBJT 400〜479点',
     'noJapanese': '日本語能力証明なし',
-    
+
     // Result messages
     'fastTrackMessage': 'おめでとうございます！高度専門職ファストトラックに適格です（80点以上）',
     'highlySkillMessage': 'おめでとうございます！高度専門職に適格です（70点以上）',
     'notQualifiedMessage': '高度専門職ビザの要件を満たしていません（70点未満）',
-    
+
     // Bonus points
     'bonus1.label': '①指定された日本の大学で学位取得',
     'bonus1.description': '文部科学省が指定した大学で学士/修士/博士号を取得',
