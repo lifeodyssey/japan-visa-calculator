@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -31,11 +32,10 @@ const AgeSection: React.FC<AgeSectionProps> = ({
           <EnhancedCheckbox
             key={item.id}
             id={item.id}
-            label={item.label}
+            label={t(item.label)}
             points={item.points}
             checked={selections[item.id] || false}
             onCheckedChange={(checked) => onSelectionChange(item.id, checked, "age")}
-            tooltip={item.tooltip}
             isCloseToQualifying={isCloseToQualifying}
           />
         ))}
@@ -44,4 +44,4 @@ const AgeSection: React.FC<AgeSectionProps> = ({
   );
 };
 
-export default AgeSection; 
+export default AgeSection;

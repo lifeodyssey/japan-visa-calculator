@@ -1,3 +1,4 @@
+
 import PointsCalculator from "@/components/PointsCalculator";
 import LanguageSwitch from "@/components/LanguageSwitch";
 import GitHubStats from "@/components/GitHubStats";
@@ -21,11 +22,10 @@ const Index = () => {
   useEffect(() => {
     document.title = t('title');
   }, [t, language]);
-
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-japan-white via-blue-50 to-purple-50 p-2 sm:p-4 relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute inset-0 bg-[url('/public/pattern.svg')] opacity-5"></div>
+      <div className="absolute inset-0 bg-[url('/pattern.svg')] opacity-5"></div>
       <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-japan-red/10 rounded-full filter blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-japan-blue/10 rounded-full filter blur-3xl translate-x-1/2 translate-y-1/2"></div>
 

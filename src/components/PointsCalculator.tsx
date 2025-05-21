@@ -1,8 +1,6 @@
+
 import React, { useState, useEffect, useCallback, lazy, Suspense } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { 
   academicPoints, 
   careerPoints, 
@@ -13,21 +11,16 @@ import {
   determineQualification,
   pointThresholds
 } from "@/data/japanPointsSystem";
-import {
-  bonusAcademicPoints,
-  bonusCareerPoints,
-  bonusLanguagePoints,
-  bonusSalaryPoints,
-  bonusSpecialPoints,
-} from "@/data/bonusPoints";
-import BonusPointsSection from "./BonusPointsSection";
 import { useLanguage } from "@/contexts/LanguageContext";
 import StickyHeader from "./StickyHeader";
-import EnhancedCheckbox from "./EnhancedCheckbox";
 import { useToast } from "@/components/ui/use-toast";
-import { motion, AnimatePresence } from "framer-motion";
-import CompareView from "./CompareView";
 import { Loader2 } from "lucide-react";
+import PointsProgressBar from "./PointsProgressBar";
+import BonusPointsContainer from "./BonusPointsContainer";
+import QualificationStatus from "./QualificationStatus";
+import PrintSummary from "./PrintSummary";
+import Disclaimer from "./Disclaimer";
+import CompareView from "./CompareView";
 
 // Lazy load sections
 const AcademicSection = lazy(() => import("./sections/AcademicSection"));
@@ -138,13 +131,11 @@ const PointsCalculator = () => {
           <Loader2 className="h-8 w-8 animate-spin text-japan-red" />
         </div>
       }>
-        <AnimatePresence mode="wait">
-          {activeSection === "academic" && <AcademicSection {...props} />}
-          {activeSection === "career" && <CareerSection {...props} />}
-          {activeSection === "salary" && <SalarySection {...props} />}
-          {activeSection === "age" && <AgeSection {...props} />}
-          {activeSection === "japanese" && <JapaneseSection {...props} />}
-        </AnimatePresence>
+        {activeSection === "academic" && <AcademicSection {...props} />}
+        {activeSection === "career" && <CareerSection {...props} />}
+        {activeSection === "salary" && <SalarySection {...props} />}
+        {activeSection === "age" && <AgeSection {...props} />}
+        {activeSection === "japanese" && <JapaneseSection {...props} />}
       </Suspense>
     );
   };
@@ -164,102 +155,18 @@ const PointsCalculator = () => {
       
       <Card className="w-full max-w-4xl mx-auto shadow-lg border-0">
         <CardHeader className="bg-gradient-to-r from-japan-red to-japan-blue text-white rounded-t-xl">
-          <div className="flex justify-between items-center">
-            <div className="text-white font-medium">{t('currentPoints')}: {totalPoints}</div>
-            <div className="text-white font-medium">{t('targetPoints')}: {pointThresholds.highlySkilled}</div>
-          </div>
-          <Progress 
-            value={(totalPoints / pointThresholds.fastTrack) * 100} 
-            className={`h-3 rounded-full mt-2 ${
-              totalPoints >= pointThresholds.highlySkilled 
-                ? 'bg-green-500' 
-                : totalPoints >= pointThresholds.highlySkilled * 0.8
-                ? 'bg-yellow-500'
-                : 'bg-red-500'
-            }`}
-          />
+          <PointsProgressBar totalPoints={totalPoints} />
         </CardHeader>
         
         <CardContent className="p-6">
           {renderSection()}
 
-          <div className="mt-8">
-            <h2 className="text-xl font-bold mb-4 text-gray-800">{t('bonusPoints')}</h2>
-            
-            <div className="bg-[#FDE1D3] p-6 rounded-xl mb-6 shadow-sm hover:shadow-md transition-all duration-300">
-              <BonusPointsSection
-                title={t('bonusAcademic')}
-                items={bonusAcademicPoints}
-                selections={selections}
-                onSelectionChange={handleCheckboxChange}
-                category="bonusAcademic"
-              />
-            </div>
+          <BonusPointsContainer 
+            selections={selections} 
+            onSelectionChange={handleCheckboxChange} 
+          />
 
-            <div className="bg-[#D6BCFA] p-6 rounded-xl mb-6 shadow-sm hover:shadow-md transition-all duration-300">
-              <BonusPointsSection
-                title={t('bonusCareer')}
-                items={bonusCareerPoints}
-                selections={selections}
-                onSelectionChange={handleCheckboxChange}
-                category="bonusCareer"
-              />
-            </div>
-
-            <div className="bg-[#F1F0FB] p-6 rounded-xl mb-6 shadow-sm hover:shadow-md transition-all duration-300">
-              <BonusPointsSection
-                title={t('bonusLanguage')}
-                items={bonusLanguagePoints}
-                selections={selections}
-                onSelectionChange={handleCheckboxChange}
-                category="bonusLanguage"
-              />
-            </div>
-
-            <div className="bg-[#FEC6A1] p-6 rounded-xl mb-6 shadow-sm hover:shadow-md transition-all duration-300">
-              <BonusPointsSection
-                title={t('bonusSalary')}
-                items={bonusSalaryPoints}
-                selections={selections}
-                onSelectionChange={handleCheckboxChange}
-                category="bonusSalary"
-              />
-            </div>
-
-            <div className="bg-[#E5DEFF] p-6 rounded-xl mb-6 shadow-sm hover:shadow-md transition-all duration-300">
-              <BonusPointsSection
-                title={t('bonusSpecial')}
-                items={bonusSpecialPoints}
-                selections={selections}
-                onSelectionChange={handleCheckboxChange}
-                category="bonusSpecial"
-              />
-            </div>
-          </div>
-
-          <div className={`mt-12 p-4 sm:p-6 rounded-xl ${
-            qualificationStatus.qualified 
-              ? qualificationStatus.level === "fastTrack" 
-                ? "bg-green-50 text-green-800 border border-green-200"
-                : "bg-blue-50 text-blue-800 border border-blue-200"
-              : "bg-red-50 text-red-800 border border-red-200"
-          }`}>
-            <h3 className="text-lg font-semibold mb-2">{t('evaluationTitle')}</h3>
-            <p className="text-base">
-              {t(qualificationStatus.message)}
-            </p>
-            
-            {qualificationStatus.qualified && (
-              <div className="mt-4">
-                <h4 className="font-medium mb-2">{t('benefits.title')}</h4>
-                <ul className="list-disc pl-5 space-y-1">
-                  {t('benefits.items', { returnObjects: true }).map((item: string, idx: number) => (
-                    <li key={idx}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
+          <QualificationStatus qualificationStatus={qualificationStatus} />
 
           <div className="flex justify-end mt-4 no-print">
             <CompareView
@@ -270,17 +177,12 @@ const PointsCalculator = () => {
             />
           </div>
 
-          {/* Print-only summary */}
-          <div className="hidden print-only mt-8 p-4 border-t">
-            <h3 className="text-lg font-bold mb-2">{t('printSummary')}</h3>
-            <p className="text-sm mb-2">{t('printDate')}: {new Date().toLocaleDateString()}</p>
-            <p className="text-sm mb-2">{t('printPoints')}: {totalPoints}</p>
-            <p className="text-sm mb-2">{t('printStatus')}: {t(qualificationStatus.message)}</p>
-          </div>
+          <PrintSummary 
+            totalPoints={totalPoints}
+            qualificationStatus={qualificationStatus}
+          />
 
-          <p className="text-sm text-gray-500 mt-8 text-center">
-            {t('disclaimer')}
-          </p>
+          <Disclaimer />
         </CardContent>
       </Card>
     </>

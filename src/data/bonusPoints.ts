@@ -1,3 +1,4 @@
+
 // Japan's Highly-Skilled Foreign Professional Bonus Points System
 
 export const bonusAcademicPoints = [

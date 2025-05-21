@@ -4,7 +4,7 @@ import { Language, translations } from '@/data/translations';
 type LanguageContextType = {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (key: string, options?: { returnObjects?: boolean }) => string | string[];
+  t: (key: string, options?: {returnObjects?: boolean}) => any;
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -50,27 +50,34 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     }
   }, [language]);
 
-  const t = (path: string, options?: { returnObjects?: boolean }) => {
-    try {
-      // Handle nested keys like 'bonus8.label'
+  const t = (path: string, options?: {returnObjects?: boolean}) => {
+    // Handle dot notation for nested objects
+    const getValue = (obj: any, path: string) => {
       const keys = path.split('.');
-      let result: any = translations[language];
+      let value = obj;
 
+      // Traverse the object using the path
       for (const key of keys) {
-        if (result && typeof result === 'object' && key in result) {
-          result = result[key];
-        } else {
-          // If any part of the path is missing, return the original path
-          return path;
-        }
+        if (value === undefined || value === null) return undefined;
+        value = value[key];
       }
 
-      // If returnObjects is true and the result is an array or object, return it directly
-      if (options?.returnObjects && (Array.isArray(result) || typeof result === 'object')) {
-        return result;
+      return value;
+    };
+
+    try {
+      const value = getValue(translations[language], path);
+
+      // Return original path if translation not found
+      if (value === undefined) {
+        console.warn(`Translation not found: ${path}`);
+        return path;
       }
 
-      return typeof result === 'string' ? result : path;
+      // Handle returning objects (like for arrays) if returnObjects is true
+      if (options?.returnObjects) return value;
+
+      return value;
     } catch (error) {
       // In case of any error, return the original path
       console.error(`Translation error for key: ${path}`, error);

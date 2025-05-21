@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Language } from "@/data/translations";
@@ -7,6 +8,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from "@/components/ui/tooltip";
 import { Globe } from "lucide-react";
 
 const LanguageSwitch = () => {
@@ -24,20 +31,27 @@ const LanguageSwitch = () => {
   // For small screens, use a dropdown menu
   return (
     <>
-      {/* Desktop view - buttons */}
+      {/* Desktop view - buttons with tooltips */}
       <div className="hidden sm:flex space-x-1">
-        {languages.map(({ code, flag }) => (
-          <Button
-            key={code}
-            variant={language === code ? "default" : "ghost"}
-            size="icon"
-            className="h-9 w-9 p-0"
-            onClick={() => setLanguage(code)}
-            aria-label={`Switch to ${code} language`}
-            title={`Switch to ${code} language`}
-          >
-            {flag}
-          </Button>
+        {languages.map(({ code, flag, name }) => (
+          <TooltipProvider key={code}>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant={language === code ? "default" : "ghost"}
+                  size="icon"
+                  className="h-9 w-9 p-0"
+                  onClick={() => setLanguage(code)}
+                  aria-label={`Switch to ${name}`}
+                >
+                  <span className="text-lg">{flag}</span>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{name}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         ))}
       </div>
 
