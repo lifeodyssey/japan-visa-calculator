@@ -44,18 +44,23 @@ const EnhancedCheckbox: React.FC<EnhancedCheckboxProps> = ({
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            <div className="flex items-start space-x-3 min-w-0">
+            <div className="flex items-start space-x-3 min-w-0 flex-grow">
               <Checkbox 
                 id={id} 
                 checked={checked}
                 onCheckedChange={onCheckedChange}
-                className="h-5 w-5 border-2 mt-0.5"
+                className="h-5 w-5 border-2 mt-0.5 flex-shrink-0"
                 aria-label={`Select ${t(label)}`}
               />
-              <Label htmlFor={id} className="cursor-pointer text-gray-700 break-words">{t(label)}</Label>
+              <Label 
+                htmlFor={id} 
+                className="cursor-pointer text-gray-700 break-words flex-grow"
+              >
+                {t(label)}
+              </Label>
             </div>
             <motion.div 
-              className="font-semibold text-japan-red bg-red-50 px-3 py-1 rounded-full text-sm flex-shrink-0 ml-2"
+              className="font-semibold text-japan-red bg-red-50 px-3 py-1 rounded-full text-sm flex-shrink-0 ml-2 whitespace-nowrap"
               animate={{
                 scale: checked ? [1, 1.1, 1] : 1,
                 backgroundColor: checked ? ['#FEE2E2', '#FECACA', '#FEE2E2'] : '#FEE2E2',
