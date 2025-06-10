@@ -4,6 +4,37 @@ export const ja = {
   subtitle: '出入国在留管理庁の高度専門職ポイント制の基準に基づき、あなたのポイントを計算します',
   currentPoints: '現在の合計点数',
   targetPoints: '目標点数',
+
+  // ビザカテゴリー
+  categories: {
+    title: 'ビザカテゴリーを選択',
+    description: '日本での予定活動に最も適したカテゴリーを選択してください',
+    minimumSalary: '最低年収',
+    minimumSalaryTooltip: '最低年収要件：{amount}万円',
+    salaryRequirement: '最低年収要件：{amount}',
+
+    academic: {
+      name: '高度学術研究分野',
+      description: '大学、研究機関等での研究活動',
+      detailsTitle: '学術研究分野の詳細',
+      details: '研究者、教授、学術研究活動に従事する専門家向け',
+      researchNote: '研究実績により追加ポイント獲得可能'
+    },
+
+    specialized: {
+      name: '高度専門・技術分野',
+      description: '専門的知識や技能を要する専門的活動',
+      detailsTitle: '専門技術分野の詳細',
+      details: 'エンジニア、IT専門家、スペシャリスト、その他技術専門家向け'
+    },
+
+    management: {
+      name: '高度経営・管理分野',
+      description: '企業経営・管理活動',
+      detailsTitle: '経営管理分野の詳細',
+      details: '役員、管理職、経営管理職にある企業リーダー向け'
+    }
+  },
   academic: {
     title: '1. 学歴',
     description: '最終学歴を選択してください'

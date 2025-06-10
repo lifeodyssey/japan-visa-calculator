@@ -1,16 +1,18 @@
 
 import React, { useState, useEffect, useCallback, lazy, Suspense } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { 
-  academicPoints, 
-  careerPoints, 
-  salaryPoints, 
-  agePoints, 
+import {
+  academicPoints,
+  careerPoints,
+  salaryPoints,
+  agePoints,
   japanesePoints,
   calculateTotalPoints,
+  calculateTotalPointsDetailed,
   determineQualification,
   pointThresholds
 } from "@/data/japanPointsSystem";
+import { VisaCategory } from "@/data/visaCategories";
 import { useLanguage } from "@/contexts/LanguageContext";
 import StickyHeader from "./StickyHeader";
 import { useToast } from "@/components/ui/use-toast";
@@ -23,11 +25,13 @@ import Disclaimer from "./Disclaimer";
 import CompareView from "./CompareView";
 
 // Lazy load sections
+const VisaCategorySection = lazy(() => import("./sections/VisaCategorySection"));
 const AcademicSection = lazy(() => import("./sections/AcademicSection"));
 const CareerSection = lazy(() => import("./sections/CareerSection"));
 const SalarySection = lazy(() => import("./sections/SalarySection"));
 const AgeSection = lazy(() => import("./sections/AgeSection"));
 const JapaneseSection = lazy(() => import("./sections/JapaneseSection"));
+const ResearchSection = lazy(() => import("./sections/ResearchSection"));
 
 const PointsCalculator = () => {
   const { t } = useLanguage();
@@ -39,8 +43,15 @@ const PointsCalculator = () => {
     level: "",
     message: ""
   });
-  const [activeSection, setActiveSection] = useState("academic");
+  const [activeSection, setActiveSection] = useState("category");
   const [isLoading, setIsLoading] = useState(false);
+
+  // New state for enhanced calculation
+  const [visaCategory, setVisaCategory] = useState<VisaCategory>('specialized');
+  const [age, setAge] = useState(30);
+  const [salary, setSalary] = useState(5000000);
+  const [researchAchievements, setResearchAchievements] = useState<string[]>([]);
+  const [professionalDegree, setProfessionalDegree] = useState(false);
 
   // Load saved selections on mount
   useEffect(() => {
@@ -131,11 +142,23 @@ const PointsCalculator = () => {
           <Loader2 className="h-8 w-8 animate-spin text-japan-red" />
         </div>
       }>
+        {activeSection === "category" && (
+          <VisaCategorySection
+            selectedCategory={visaCategory}
+            onCategoryChange={setVisaCategory}
+          />
+        )}
         {activeSection === "academic" && <AcademicSection {...props} />}
         {activeSection === "career" && <CareerSection {...props} />}
         {activeSection === "salary" && <SalarySection {...props} />}
         {activeSection === "age" && <AgeSection {...props} />}
         {activeSection === "japanese" && <JapaneseSection {...props} />}
+        {activeSection === "research" && visaCategory === 'academic' && (
+          <ResearchSection
+            selectedAchievements={researchAchievements}
+            onAchievementChange={setResearchAchievements}
+          />
+        )}
       </Suspense>
     );
   };

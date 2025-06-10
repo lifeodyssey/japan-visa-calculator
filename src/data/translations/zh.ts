@@ -4,6 +4,37 @@ export const zh = {
   subtitle: '根据日本出入国在留管理厅公布的高度专门人才评分标准，计算您的积分是否符合高度专门人才签证要求',
   currentPoints: '当前总分',
   targetPoints: '目标分数',
+
+  // 签证类别
+  categories: {
+    title: '选择签证类别',
+    description: '请选择最符合您在日本预期活动的类别',
+    minimumSalary: '最低年收',
+    minimumSalaryTooltip: '最低年收入要求：{amount}万日元',
+    salaryRequirement: '最低年收入要求：{amount}',
+
+    academic: {
+      name: '高度学术研究分野',
+      description: '在大学、研究机构或类似组织从事研究活动',
+      detailsTitle: '学术研究类别详情',
+      details: '适用于研究人员、教授和从事学术研究活动的专业人士',
+      researchNote: '可通过研究成果获得额外积分'
+    },
+
+    specialized: {
+      name: '高度专门・技术分野',
+      description: '需要专门知识或技能的专业活动',
+      detailsTitle: '专门技术类别详情',
+      details: '适用于工程师、IT专业人士、专家和其他技术专家'
+    },
+
+    management: {
+      name: '高度经营・管理分野',
+      description: '企业经营和管理活动',
+      detailsTitle: '经营管理类别详情',
+      details: '适用于高管、管理人员和担任管理职位的商业领导者'
+    }
+  },
   academic: {
     title: '1. 学历背景',
     description: '请选择您的最高学历'

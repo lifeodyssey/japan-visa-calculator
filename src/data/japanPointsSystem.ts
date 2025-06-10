@@ -1,13 +1,18 @@
 // Japan's Highly-Skilled Foreign Professional Points System Data
+// Updated with detailed category-specific logic
 
-// Academic Background
+import { VisaCategory, getAcademicPointsForCategory, getCareerPointsForCategory } from './visaCategories';
+import { calculateSalaryPoints } from '@/utils/salaryCalculation';
+import { allDetailedBonusPoints, getBonusPointsForCategory } from './detailedBonusPoints';
+import { calculateResearchAchievementPoints } from './researchAchievements';
+
+// Legacy exports for backward compatibility (will be deprecated)
 export const academicPoints = [
   { id: "doctor", label: "doctor", points: 30 },
   { id: "master", label: "master", points: 20 },
   { id: "bachelor", label: "bachelor", points: 10 },
 ];
 
-// Professional Career
 export const careerPoints = [
   { id: "10plus", label: "10plus", points: 20 },
   { id: "7to9", label: "7to9", points: 15 },
@@ -16,7 +21,6 @@ export const careerPoints = [
   { id: "less3", label: "less3", points: 0 },
 ];
 
-// Annual Salary
 export const salaryPoints = [
   { id: "salary10M", label: "salary10M", points: 40 },
   { id: "salary9M", label: "salary9M", points: 35 },
@@ -29,7 +33,7 @@ export const salaryPoints = [
   { id: "salaryLess3M", label: "salaryLess3M", points: 0 },
 ];
 
-// Age
+// Age points (same for all categories)
 export const agePoints = [
   { id: "age29", label: "age29", points: 15 },
   { id: "age30to34", label: "age30to34", points: 10 },
@@ -37,7 +41,7 @@ export const agePoints = [
   { id: "age40plus", label: "age40plus", points: 0 },
 ];
 
-// Japanese Language Proficiency
+// Japanese Language Proficiency (legacy - now handled in bonus points)
 export const japanesePoints = [
   { id: "jlptN1", label: "jlptN1", points: 15 },
   { id: "jlptN2", label: "jlptN2", points: 10 },
@@ -50,13 +54,118 @@ export const pointThresholds = {
   fastTrack: 80, // Fast track points
 };
 
-// Calculate total points
-import { allBonusPoints } from './bonusPoints';
+// Enhanced calculation interface
+export interface CalculationInput {
+  visaCategory: VisaCategory;
+  age: number;
+  salary: number;
+  selections: Record<string, boolean>;
+  researchAchievements?: string[];
+  professionalDegree?: boolean; // MBA/MOT for specialized/management categories
+}
 
+// Calculate total points with new detailed logic
+export const calculateTotalPointsDetailed = (input: CalculationInput): {
+  total: number;
+  breakdown: {
+    academic: number;
+    career: number;
+    salary: number;
+    age: number;
+    research: number;
+    bonus: number;
+    professionalDegreeBonus: number;
+  };
+  warnings: string[];
+} => {
+  const { visaCategory, age, salary, selections, researchAchievements = [], professionalDegree = false } = input;
+  const warnings: string[] = [];
+
+  let academicTotal = 0;
+  let careerTotal = 0;
+  let salaryTotal = 0;
+  let ageTotal = 0;
+  let researchTotal = 0;
+  let bonusTotal = 0;
+  let professionalDegreeBonus = 0;
+
+  // Calculate academic background points
+  const academicOptions = getAcademicPointsForCategory(visaCategory);
+  academicOptions.forEach(item => {
+    if (selections[item.id]) {
+      academicTotal += item.points;
+    }
+  });
+
+  // Calculate professional degree bonus (MBA/MOT)
+  if (professionalDegree && (visaCategory === 'specialized' || visaCategory === 'management')) {
+    if (selections['academic_doctorate_or_master'] || selections['academic_master']) {
+      professionalDegreeBonus = 5;
+    }
+  }
+
+  // Calculate career points
+  const careerOptions = getCareerPointsForCategory(visaCategory);
+  careerOptions.forEach(item => {
+    if (selections[item.id]) {
+      careerTotal += item.points;
+    }
+  });
+
+  // Calculate salary points
+  const salaryResult = calculateSalaryPoints(salary, age, visaCategory);
+  salaryTotal = salaryResult.points;
+
+  // Calculate age points
+  agePoints.forEach(item => {
+    if (selections[item.id]) {
+      ageTotal += item.points;
+    }
+  });
+
+  // Calculate research achievement points (Academic category only)
+  if (visaCategory === 'academic') {
+    researchTotal = calculateResearchAchievementPoints(researchAchievements);
+  }
+
+  // Calculate bonus points
+  const applicableBonusPoints = getBonusPointsForCategory(visaCategory);
+  applicableBonusPoints.forEach(item => {
+    if (selections[item.id]) {
+      // Check for mutually exclusive selections
+      if (item.mutuallyExclusive) {
+        const conflictingSelections = item.mutuallyExclusive.filter(id => selections[id]);
+        if (conflictingSelections.length > 0) {
+          warnings.push(`bonus.warning.mutually_exclusive.${item.id}`);
+          return; // Skip this bonus point
+        }
+      }
+      bonusTotal += item.points;
+    }
+  });
+
+  const total = academicTotal + careerTotal + salaryTotal + ageTotal + researchTotal + bonusTotal + professionalDegreeBonus;
+
+  return {
+    total,
+    breakdown: {
+      academic: academicTotal,
+      career: careerTotal,
+      salary: salaryTotal,
+      age: ageTotal,
+      research: researchTotal,
+      bonus: bonusTotal,
+      professionalDegreeBonus
+    },
+    warnings
+  };
+};
+
+// Legacy function for backward compatibility
 export const calculateTotalPoints = (selections: Record<string, boolean>) => {
   let total = 0;
 
-  // Calculate points from basic categories
+  // Calculate points from basic categories (legacy logic)
   academicPoints.forEach(item => {
     if (selections[item.id]) {
       total += item.points;
@@ -87,8 +196,8 @@ export const calculateTotalPoints = (selections: Record<string, boolean>) => {
     }
   });
 
-  // Calculate points from bonus categories
-  allBonusPoints.forEach(item => {
+  // Calculate points from detailed bonus categories
+  allDetailedBonusPoints.forEach(item => {
     if (selections[item.id]) {
       total += item.points;
     }
