@@ -56,11 +56,6 @@ export const zh = {
     description: '请选择您的日语水平'
   },
   bonusPoints: '额外加分项目',
-  bonusAcademic: '学历相关加分',
-  bonusCareer: '职业相关加分',
-  bonusLanguage: '语言能力加分',
-  bonusSalary: '收入相关加分',
-  bonusSpecial: '特殊加分项目',
   evaluationTitle: '评估结果',
   disclaimer: '注：本计算器仅供参考，最终认定以日本出入国在留管理厅为准。',
   copyright: '日本高度专门人才积分计算器',

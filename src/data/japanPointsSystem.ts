@@ -3,7 +3,7 @@
 
 import { VisaCategory, getAcademicPointsForCategory, getCareerPointsForCategory } from './visaCategories';
 import { calculateSalaryPoints } from '@/utils/salaryCalculation';
-import { allDetailedBonusPoints, getBonusPointsForCategory } from './detailedBonusPoints';
+import { allBonusPoints, getBonusPointsForCategory } from './bonusPoints';
 import { calculateResearchAchievementPoints } from './researchAchievements';
 
 // Legacy exports for backward compatibility (will be deprecated)
@@ -196,8 +196,8 @@ export const calculateTotalPoints = (selections: Record<string, boolean>) => {
     }
   });
 
-  // Calculate points from detailed bonus categories
-  allDetailedBonusPoints.forEach(item => {
+  // Calculate points from bonus categories
+  allBonusPoints.forEach(item => {
     if (selections[item.id]) {
       total += item.points;
     }

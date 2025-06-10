@@ -56,11 +56,6 @@ export const en = {
     description: 'Please select your Japanese language level'
   },
   bonusPoints: 'Bonus Points Items',
-  bonusAcademic: 'Academic-related Bonus',
-  bonusCareer: 'Career-related Bonus',
-  bonusLanguage: 'Language Proficiency Bonus',
-  bonusSalary: 'Income-related Bonus',
-  bonusSpecial: 'Special Achievement Bonus',
   evaluationTitle: 'Evaluation Result',
   disclaimer: 'Note: This calculator is for reference only. Final determination is subject to Immigration Bureau of Japan.',
   copyright: 'Japan Highly-Skilled Professional Points Calculator',

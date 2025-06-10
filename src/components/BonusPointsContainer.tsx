@@ -3,9 +3,8 @@ import React from 'react';
 import BonusPointsSection from "./BonusPointsSection";
 import {
   bonusPointsByCategory,
-  allDetailedBonusPoints,
   getBonusPointsForCategory
-} from "@/data/detailedBonusPoints";
+} from "@/data/bonusPoints";
 import { VisaCategory } from "@/data/visaCategories";
 import { useLanguage } from "@/contexts/LanguageContext";
 

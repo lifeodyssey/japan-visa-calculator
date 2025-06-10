@@ -56,11 +56,6 @@ export const ja = {
     description: '日本語レベルを選択してください'
   },
   bonusPoints: 'ボーナスポイント項目',
-  bonusAcademic: '学歴関連ボーナス',
-  bonusCareer: '職歴関連ボーナス',
-  bonusLanguage: '語学力ボーナス',
-  bonusSalary: '年収関連ボーナス',
-  bonusSpecial: '特別加算項目',
   evaluationTitle: '評価結果',
   disclaimer: '注：このツールは参考用です。最終的な判断は出入国在留管理庁による審査に基づきます。',
   copyright: '日本高度専門職ポイント計算ツール',
