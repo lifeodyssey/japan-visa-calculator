@@ -31,7 +31,7 @@ const BonusPointsSection: React.FC<BonusPointsSectionProps> = ({
   category = "bonus",
 }) => {
   const { t } = useLanguage();
-  
+
   return (
     <div className="mb-6">
       <h3 className="text-lg font-bold mb-2">{title}</h3>
@@ -48,15 +48,15 @@ const BonusPointsSection: React.FC<BonusPointsSectionProps> = ({
                 className="mt-0.5"
               />
               <div className="flex flex-wrap items-center gap-2 min-w-0">
-                <Label 
-                  htmlFor={item.id} 
+                <Label
+                  htmlFor={item.id}
                   className="cursor-pointer break-words font-medium"
                 >
-                  {t(item.label)}
+                  {item.label.startsWith('bonus') ? t(item.label) : item.label}
                 </Label>
                 <HoverCard>
                   <HoverCardTrigger asChild>
-                    <button 
+                    <button
                       className="inline-flex items-center justify-center rounded-full p-1 hover:bg-gray-100"
                       aria-label="More information"
                     >
@@ -64,7 +64,7 @@ const BonusPointsSection: React.FC<BonusPointsSectionProps> = ({
                     </button>
                   </HoverCardTrigger>
                   <HoverCardContent className="w-80">
-                    <p className="text-sm">{t(item.description)}</p>
+                    <p className="text-sm">{item.description.startsWith('bonus') ? t(item.description) : item.description}</p>
                   </HoverCardContent>
                 </HoverCard>
               </div>

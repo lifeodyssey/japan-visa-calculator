@@ -19,7 +19,7 @@ const SalarySection: React.FC<SalarySectionProps> = ({
   const { t } = useLanguage();
 
   return (
-    <motion.div 
+    <motion.div
       className="mb-8 p-6 rounded-xl bg-[#FEF7CD] shadow-sm hover:shadow-md transition-all duration-300"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -32,7 +32,7 @@ const SalarySection: React.FC<SalarySectionProps> = ({
           <EnhancedCheckbox
             key={item.id}
             id={item.id}
-            label={item.label}
+            label={t(item.label)}
             points={item.points}
             checked={selections[item.id] || false}
             onCheckedChange={(checked) => onSelectionChange(item.id, checked, "salary")}
