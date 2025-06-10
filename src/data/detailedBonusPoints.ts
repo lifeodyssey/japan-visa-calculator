@@ -66,8 +66,8 @@ export const bonus04_innovation_support: BonusPointItem = {
 export const bonus04_sme_additional: BonusPointItem = {
   id: "bonus04_sme_additional",
   bonusNumber: 4,
-  nameKey: "bonus.04.sme.name", 
-  descriptionKey: "bonus.04.sme.description",
+  nameKey: "bonus.04_sme.name",
+  descriptionKey: "bonus.04_sme.description",
   points: 10,
   category: 'innovation',
   requiresValidation: true

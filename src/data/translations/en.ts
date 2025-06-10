@@ -154,11 +154,9 @@ export const en = {
       name: 'ボーナス④ Innovation Promotion Support',
       description: 'Working at institution receiving innovation promotion support measures'
     },
-    '04': {
-      sme: {
-        name: 'ボーナス④ Additional SME Bonus',
-        description: 'Additional 10 points if the institution is a Small and Medium-sized Enterprise (SME)'
-      }
+    '04_sme': {
+      name: 'ボーナス④ Additional SME Bonus',
+      description: 'Additional 10 points if the institution is a Small and Medium-sized Enterprise (SME)'
     },
     '05': {
       name: 'ボーナス⑤ SME with High R&D Ratio',
