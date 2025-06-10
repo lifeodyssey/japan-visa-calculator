@@ -184,9 +184,10 @@ const PointsCalculator = () => {
         <CardContent className="p-6">
           {renderSection()}
 
-          <BonusPointsContainer 
-            selections={selections} 
-            onSelectionChange={handleCheckboxChange} 
+          <BonusPointsContainer
+            selections={selections}
+            onSelectionChange={handleCheckboxChange}
+            visaCategory={visaCategory}
           />
 
           <QualificationStatus qualificationStatus={qualificationStatus} />

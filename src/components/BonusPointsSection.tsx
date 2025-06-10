@@ -52,7 +52,7 @@ const BonusPointsSection: React.FC<BonusPointsSectionProps> = ({
                   htmlFor={item.id}
                   className="cursor-pointer break-words font-medium"
                 >
-                  {item.label.startsWith('bonus') ? t(item.label) : item.label}
+                  {item.label}
                 </Label>
                 <HoverCard>
                   <HoverCardTrigger asChild>
@@ -64,7 +64,7 @@ const BonusPointsSection: React.FC<BonusPointsSectionProps> = ({
                     </button>
                   </HoverCardTrigger>
                   <HoverCardContent className="w-80">
-                    <p className="text-sm">{item.description.startsWith('bonus') ? t(item.description) : item.description}</p>
+                    <p className="text-sm">{item.description}</p>
                   </HoverCardContent>
                 </HoverCard>
               </div>

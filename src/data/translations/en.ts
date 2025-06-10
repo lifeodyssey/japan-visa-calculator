@@ -138,6 +138,30 @@ export const en = {
   
   // Detailed Bonus Points (15 categories)
   bonus: {
+    research: {
+      title: 'Research Achievements'
+    },
+    position: {
+      title: 'Executive Position'
+    },
+    qualification: {
+      title: 'Professional Qualifications'
+    },
+    innovation: {
+      title: 'Innovation & SME'
+    },
+    language: {
+      title: 'Language Proficiency'
+    },
+    education: {
+      title: 'Education & Training'
+    },
+    investment: {
+      title: 'Investment & Business'
+    },
+    special: {
+      title: 'Special Programs'
+    },
     '01': {
       name: 'ボーナス① Research Achievements',
       description: 'Research achievements for Specialized/Technical and Management categories (similar to Academic category criteria)'

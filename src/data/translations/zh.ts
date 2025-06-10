@@ -136,7 +136,99 @@ export const zh = {
   'highlySkillMessage': '恭喜！您的得分达到了高度专门人才水平（70分以上）',
   'notQualifiedMessage': '您的得分未达到高度专门人才签证要求（低于70分）',
   
-  // Bonus points
+  // Detailed Bonus Points (15 categories)
+  bonus: {
+    research: {
+      title: '研究成果'
+    },
+    position: {
+      title: '高管职位'
+    },
+    qualification: {
+      title: '专业资格'
+    },
+    innovation: {
+      title: '创新支援・中小企业'
+    },
+    language: {
+      title: '语言能力'
+    },
+    education: {
+      title: '教育・培训'
+    },
+    investment: {
+      title: '投资・经营'
+    },
+    special: {
+      title: '特殊项目'
+    },
+    '01': {
+      name: 'ボーナス① 研究成果',
+      description: '专门技术和经营管理类别的研究成果（类似学术类别标准）'
+    },
+    '02': {
+      name: 'ボーナス② 高管职位',
+      description: '代表董事、代表执行役或执行役（仅限经营管理类别）'
+    },
+    '03': {
+      name: 'ボーナス③ 外国专业资格',
+      description: '相关外国资格（如美国CPA、外国律师资格、精算师资格、设计奖项等）'
+    },
+    '04': {
+      name: 'ボーナス④ 创新促进支援',
+      description: '在接受创新促进支援措施的机构工作'
+    },
+    '04_sme': {
+      name: 'ボーナス④ 中小企业额外奖励',
+      description: '如果机构是中小企业，额外获得10分'
+    },
+    '05': {
+      name: 'ボーナス⑤ 高研发比例中小企业',
+      description: '在研发费用比例超过3%的中小企业工作'
+    },
+    '06': {
+      name: 'ボーナス⑥ 日本国家资格',
+      description: '持有相关日本国家资格（每个资格5分，最多10分）'
+    },
+    '07': {
+      name: 'ボーナス⑦ 日本高等教育学位',
+      description: '在日本高等教育机构获得学位'
+    },
+    '08': {
+      name: 'ボーナス⑧ 日语N1级',
+      description: 'JLPT N1或同等水平（BJT 480+，或外国大学日语专业毕业）'
+    },
+    '09': {
+      name: 'ボーナス⑨ 日语N2级',
+      description: 'JLPT N2或同等水平（BJT 400+）- 不能与⑦或⑧同时申请'
+    },
+    '10': {
+      name: 'ボーナス⑩ 成长领域先进项目',
+      description: '从事指定成长领域的先进项目'
+    },
+    '11': {
+      name: 'ボーナス⑪ 指定大学毕业',
+      description: '从法务大臣指定的大学毕业（世界排名、超级全球大学等）'
+    },
+    '12': {
+      name: 'ボーナス⑫ 指定培训完成',
+      description: '完成法务大臣指定的培训（如培训在日本机构进行则不能与⑦同时申请）'
+    },
+    '13': {
+      name: 'ボーナス⑬ 企业投资1亿日元以上',
+      description: '在管理的企业中投资1亿日元以上（仅限经营管理类别）'
+    },
+    '14': {
+      name: 'ボーナス⑭ 投资管理业务',
+      description: '从事国际金融中心措施相关的投资管理业务'
+    },
+    '15': {
+      name: 'ボーナス⑮ 地方政府支援',
+      description: '在接受地方政府高度人才接收支援的机构工作'
+    }
+  },
+
+  // Legacy bonus points (for backward compatibility)
   'bonus1.label': '①在日本指定的大学获得学位',
   'bonus1.description': '从日本文部科学省指定的大学获得学士/硕士/博士学位',
   'bonus2.label': '②在世界前300名大学获得学位',
